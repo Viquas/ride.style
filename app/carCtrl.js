@@ -8,5 +8,5 @@ app.controller('carCtrl', function ($scope, $rootScope, $routeParams, $location,
       ceil: 450
     }
   };
-
+  
 });

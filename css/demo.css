@@ -621,6 +621,7 @@ select.filter{
 	border-right: 0px;
 	background-color: white;
 	margin-bottom: 10px;
+	border-radius: 0px;
 }
 select:focus,textarea:focus, input:focus{
     outline: none;
@@ -629,6 +630,14 @@ select:focus,textarea:focus, input:focus{
 	margin: 10px 0px;
 }
 
+a.filter-reset{
+color: #c9a657;
+text-decoration: underline;
+float: right;
+font-family: 'Roboto';
+cursor: pointer;
+
+}
 #left {
   float: left;
   width: 30%;
@@ -665,16 +674,27 @@ html::-webkit-scrollbar{
 }
 .custom-slider.rzslider .rz-selection {
   background: #c9a657;
+	height: 3px;
 }
 
 .custom-slider.rzslider .rz-pointer {
-  width: 8px;
-  height: 16px;
+  width: 20px;
+  height: 25px;
   top: auto; /* to remove the default positioning */
-  bottom: 0;
-  background-color: #333;
+  bottom: 3px;
+  /*background-color: #333;*/
+	background: url('../img/pointer.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+}
+.rzslider .rz-bubble {
+  display: none;
+}
+
+.rzslider .rz-limit{
+  display: block;
 }
 
 .custom-slider.rzslider .rz-pointer:after {
@@ -702,7 +722,11 @@ html::-webkit-scrollbar{
 .custom-slider.rzslider .rz-tick.rz-selected {
   background: #c9a657;
 }
+.priceRange{
+ font-size: 15px;
+ font-family: 'Roboto','Sans-serif';
 
+}
 /*rzslider css end*/
 
 .white{

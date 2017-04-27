@@ -29,6 +29,8 @@
     rz-slider-model="slider.min"
     rz-slider-high="slider.max"
     rz-slider-options="slider.options"></rzslider>
+    <p class="text-center priceRange">£ {{ slider.min }} - £ {{slider.max}} </p>
+
     </div>
     <div class="col-sm-12 filters">
         <p class="filter-title"> Vehicle Type </p>
@@ -48,6 +50,9 @@
             <<option value="0">Audi </option>
           </select>
         </div>
+        <div class="col-sm-12 filters">
+          <a class="filter-reset">Reset All</a>
+        </div>
   </div>
     <div class="col-lg-8" id="right">
       <div class="car_card">
@@ -59,7 +64,6 @@
           <div class="col-sm-1">
             <img class="detail-logo" src="img/Lambo_logo.png"> </img>
           </div>
-
           <div class="col-sm-8">
             <h3 ><span class="detailTitle">Lamborghini Aventador</span><span class="detailSubTitle">Pirelli Edition</span></h3>
             <h3 ><span class="detailYear">2014</span></h3>

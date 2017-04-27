@@ -1,0 +1,217 @@
+<section class="padded">
+  <div class="container" >
+
+    <div class="row">
+      <div class="col-sm-2" >
+        <p class="spec_text text-right "><img src="img/prev-page.png" class="prev-icon"> </img>&nbsp;Back
+        </p>
+      </div>
+      <div class="col-sm-8" >
+        <p class="text-center">
+          <span class="dot "></span>
+          <span class="dot"></span>
+          <span class="dot active"></span>
+          <span class="dot"></span>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <p class="text-center page-info">
+        Trip Summary
+      </p>
+      <hr class="gold_line"> </hr>
+
+    </div>
+    <div class="row">
+      <p class="text-center page-info">
+        <img class="trip-logo" src="img/Lambo_logo.png"> </img>
+      </p>
+      <p class="spec_text text-center">
+        Lamborghini Aventador
+      </p>
+      <p class="spec_text text-center">
+        Pirelli Edition <span class="dot1"></span> 2014 Model
+      </p>
+    </div>
+    <div class="col-lg-6 col-md-8 col-sm-12 col-lg-offset-3" >
+    <hr> </hr>
+  </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-lg-offset-2" >
+
+        <div class="col-sm-5 filters">
+          <p class="filter-title"> Start Date </p>
+          <div class="input-group">
+            <div class="input-group-addon date-group-addon-small"><i class="flaticon flaticon-calendar-6"></i></div>
+          <input class="form-input date-input-small" type="date">  </input>
+          <div class="input-group-addon time-group-addon-small"><i class="flaticon flaticon-clock-1"></i></div>
+      <input class="form-input time-input-small" type="time"></input>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <img src="img/arrow.png" class="img-responsive arrow-img"></img>
+        </div>
+        <div class="col-sm-5 filters">
+          <p class="filter-title"> End Date </p>
+          <div class="input-group">
+            <div class="input-group-addon date-group-addon-small"><i class="flaticon flaticon-calendar-6"></i></div>
+          <input class="form-input date-input-small" type="date">  </input>
+          <div class="input-group-addon time-group-addon-small"><i class="flaticon flaticon-clock-1"></i></div>
+      <input class="form-input time-input-small" type="time"></input>
+
+          </div>
+          <br/>
+          <br/>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-12">
+          <input type="checkbox" id="checkbox-1-1" class="ui-checkbox" ng-model="chauffeur_selected" />
+          <label class="label-text" for="checkbox-1-1">Chauffeur</label>
+          <br/>
+          <br/>
+        </div>
+
+        </div>
+        <!--Start show this if chauffeur is  choosen -->
+        <div  class="" ng-show="chauffeur_selected">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
+              <input class="form-input text-input-small" type="text" placeholder="Enter pickup location">
+            </div>
+          </div>
+
+        </div>
+        <!--End show this if chauffeur is  choosen -->
+
+
+          <!--Start show this if chauffeur is not choosen -->
+        <div  class=""  ng-show="!chauffeur_selected">
+          <div class="form-group">
+            <div class="col-lg-6">
+              <div class="reg">
+                <label><input type="radio" name="optradio" value="0" ng-model="deliver_the_Car">
+                  <span></span>
+                </label>
+                <abbr> Deliver the car to me </abbr>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="reg">
+                <label><input type="radio" name="optradio" value="1" ng-model="deliver_the_Car">
+                  <span></span>
+                </label>
+                <abbr> I'll pick up the car </abbr>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <!--Start show this if user chooses to deliver  the car -->
+          <div class="" ng-show="deliver_the_Car == 0">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
+              <input class="form-input text-input-small" type="text" placeholder="Delivery Address">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group" style="width: 100%">
+              <span class="input-group-addon checkbox-group-addon-small">
+                <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector"> </span>
+              <input class="form-input text-input-small" type="text" placeholder="Collection address same as delivery">
+            </div>
+          </div>
+
+
+
+        </div>
+        <!--End show this if user chooses to deliver  the car -->
+        <!--Start show this if user chooses to pick up the car -->
+        <div class="" ng-show="deliver_the_Car == 1">
+          <div id="carLocationMap"></div>
+   <script>
+     function initMap() {
+       var uluru = {lat: 51.528308, lng: -0.3818017};
+       var map = new google.maps.Map(document.getElementById('carLocationMap'), {
+         zoom: 14,
+         center: uluru
+       });
+       var marker = new google.maps.Marker({
+         position: uluru,
+         map: map
+       });
+     }
+   </script>
+   <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfPfxy4MfDhcQhsOj2jEvmkXVHGezzR_U&callback=initMap">
+   </script>
+        </div>
+        <!--End show this if user chooses to pick up the car -->
+        </div>
+        <!--End show this if chauffeur is choosen -->
+
+        <!-- <div class="form-group">
+          <textarea class="form-control text-textarea-small" rows="3" placeholder="Additional request"></textarea>
+        </div> -->
+
+
+
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-striped spectable">
+                <tbody>
+                  <tr>
+                    <td class="text-right col-md-5">Distance included</td>
+                    <td class="col-md-2"></td>
+                    <td class="text-left col-md-5">60 Miles. </td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Daily price</td>
+                      <td class="col-md-2"></td>
+                    <td class="text-left">£550</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Security deposit</td>
+                      <td class="col-md-2"></td>
+                    <td class="text-left">£7550</td>
+                  </tr>
+
+                </tbody>
+              </table>
+          </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+          <div class="col-sm-12">
+          <input type="checkbox" id="checkbox-1-1" class="ui-checkbox" ng-model="chauffeur_selected" />
+          <label class="label-text" for="checkbox-1-1">I agree to have read the terms & conditions and I don’t really
+</label>
+          <br/>
+          <br/>
+        </div>
+
+        </div>
+
+
+        <div class="form-group">
+          <p class="text-center">
+            <a href="work.php" class=" btn golden-button btn-lg btn-center" role="button" >
+              Proceed to payment
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

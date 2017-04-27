@@ -45,6 +45,16 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/book1.html',
                 controller: 'bookCtrl',
             })
+            .when('/book2', {
+                title: 'Book Car',
+                templateUrl: 'partials/book2.html',
+                controller: 'bookCtrl',
+            })
+            .when('/book3', {
+                title: 'Book Car',
+                templateUrl: 'partials/book3.html',
+                controller: 'bookCtrl',
+            })
             .when('/car_detail', {
                 title: 'Car Detail',
                 templateUrl: 'partials/car_detail.html',

@@ -72,7 +72,8 @@ transform: scale(-1, 1) !important;
 	color: #333;
 	font-size: 25px;
 	font-family: 'Roboto','Sans-serif';
-	font-weight: 300;
+	font-weight: 400;
+	letter-spacing: 1.5px;
 }
 
 
@@ -338,7 +339,7 @@ button.menu:hover {
 .hr{
 	margin:0px 0px 10px 0px;
     width: 10%;
-  border-bottom: 2px solid #c9a657;
+  border-bottom: 2px solid rgba(201, 166, 87, 0.1);
 }
 .subtitle{
 	color:#f7f7f7;
@@ -544,6 +545,47 @@ color: #b5b5b5;
     border-radius: 0px;
 		border-left:0px;
 		border-right:0px;
+}
+input.form-text{
+	border: 0px;
+	border-bottom: 1px solid #999999;
+	padding:5px 0px;
+	font-size: 18px;
+	margin: 10px 0px;
+	padding: 5px;
+	font-family: 'Roboto','Sans-serif';
+	font-weight: 300;
+}
+input.form-text::placeholder{
+	/*letter-spacing: 1px;*/
+	font-family: 'Roboto','Sans-serif';
+}
+
+input.form-text:focus{
+    outline: none;
+	border: 0px;
+	border-bottom: 1px solid #c9a657;
+
+}
+input.form-text::-webkit-inner-spin-button,
+{
+    display: none;
+    -webkit-appearance: none;
+}
+
+
+.form-control {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+*:focus {
+    outline: none !important;
 }
 input.date-input-small::-webkit-inner-spin-button,
 input.date-input-small::-webkit-calendar-picker-indicator {
@@ -812,12 +854,17 @@ hr.gold_line{
 hr{
 	margin: 10px auto;
 
-	color:#c9a657;
-	border-color:#c9a657;
-	background-color:#c9a657;
+	color:rgba(201, 166, 87, 0.3);
+	border-color:rgba(201, 166, 87, 0.3);
+	background-color:rgba(201, 166, 87, 0.3);
 }
 
+.arrow-img{
+ vertical-align: middle;
+ margin: auto;
+ margin-top: 50px;
 
+}
 
 .spec_text{
 	font-family:  'Roboto';
@@ -955,13 +1002,14 @@ bottom: 3px;
 	color: #333;
 	font-size: 22px;
 	font-family: 'Roboto','Sans-serif';
-	font-weight: 300;
+	font-weight: 400;
+	letter-spacing: 1.5px;
 }
 
 .slant{
 	color: #545454;
 	font-family: 'Sans-serif';
-	font-size: 20px;
+	font-size: 17px;
 	font-weight: 300;
 	font-style: italic;
 }
@@ -969,7 +1017,7 @@ bottom: 3px;
 .link{
 	color: #c9a657;
 	font-family: 'Roboto','Sans-serif';
-	font-size: 18px;
+	font-size: 17px;
 	font-weight: 300;
 	font-style: italic;
 	text-decoration: underline;
@@ -980,6 +1028,42 @@ bottom: 3px;
 			 width: 100%;
 			 margin-bottom: 20px;
 			}
+.upload-div{
+width: 80px;
+height: 80px;
+margin: auto;
+margin-top: 20px;
+margin-bottom: 20px;
+border-radius: 40px;
+border: 2px solid #c9a657;
+padding: 23px 0px 0px 23px;
+font-size: 20px;
+}
+
+.upload-icon{
+	width: 30px;
+	height: 30px;
+}
+.trip-logo{
+width:50px;
+height: 50px;
+margin: 10px auto;
+}
+span.dot1:after{
+	content:'\25CF';
+	color:#c9a657;
+	margin-left:5px!important;
+	margin-right:5px!important
+}
+span.dot1.last:after{
+	content:'';
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+
+     border-top: 0px solid #ddd; 
+}
+
 @media screen and (max-width: 25em) {
 
 	button.menu {

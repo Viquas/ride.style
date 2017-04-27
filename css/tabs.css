@@ -268,17 +268,19 @@
 	font-size: 1em;
 	font-family: 'Roboto';
 	font-weight: 400;
+	text-align: left;
+	margin-left: 5px;
 }
 
 input.date-input{
 	border: 1px solid #c9a657;
-	padding:10px;
+	padding:5px;
 	width:178px;
 }
 input.time-input{
 	border: 1px solid #c9a657;
 	border-top:none;
-	padding:10px;
+	padding:5px;
 	width: 100%;
 }
 
@@ -356,6 +358,15 @@ input[type="date"].date-input::-webkit-input-placeholder {
 	font-size: 0.9em;
 	color: #181818;
 	font-weight: 400;
+
+}
+.brand_suggest:before {
+  content : "";
+  position: absolute;
+	bottom: 0px;
+  height  : 1px;
+  width   : 5%;  /* or 100px */
+  border-bottom: 1px solid #c9a657;
 }
 
 .brand_suggest::after{

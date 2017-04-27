@@ -56,8 +56,8 @@
                       </a>
 
                         <button type="button" class="user" >
-                          <i class="flaticon flaticon-user"></i>
-                           Sign up
+                          <i class="flaticon flaticon-user-3"></i>
+                            <p class="user-text"> Sign up</p>
                         </button>
                     </div>
 

@@ -1,0 +1,78 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Add New Car</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+
+        <div class="col-sm-10 ">
+              <h4 class="header blue lighter bigger">
+                Add Car Specs
+              </h4>
+              <br/>
+              <form name="carSpecsForm" class="form-horizontal" role="form">
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Daily price" >Daily price</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="number" class="form-control" placeholder="Daily price" name="daily_price" ng-model="car.daily_price" required focus/>
+                               <!-- <span ng-show="carUploadForm.name.$empty" class="help-inline">Name cannot be empty</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="name">Weekly price</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="number" class="form-control" placeholder="Car Model" name="weekly_price" ng-model="car.weekly_price" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Security Deposit">Security Deposit</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="number" class="form-control" placeholder="Security Deposit" name="security_deposit" ng-model="car.security_deposit" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+
+                  <!-- <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="make">Car make</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                      <select  class="form-control" name="make" ng-model="car.make_id" ng-options="obj.id as obj.name for obj in models" required/>
+
+                      </select>
+
+                  </span>
+                      </div>
+                  </div> -->
+
+
+
+
+
+                  <div class="form-group">
+                      <span class="lbl col-sm-5"> </span>
+                      <div class="col-sm-7">
+                      <a href="" class="width-35 pull-right btn btn-sm btn-primary" ng-click="third(car)" ng-show="next" ng-disabled="carSpecsForm.$invalid">Next</a>
+                      <a href="" class="width-35 pull-right btn btn-sm btn-primary" ng-click="thirdUpdate(car)" ng-show="update" ng-disabled="carSpecsForm.$invalid" >Update</a>
+                      </div>
+                  </div>
+                  </fieldset>
+                  <span class="lbl col-sm-5"> </span>
+
+                  </div>
+              </form>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

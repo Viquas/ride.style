@@ -1,0 +1,36 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Add User Image</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+
+        <div class="col-sm-10 ">
+              <h4 class="header blue lighter bigger">
+                Add User Images
+              </h4>
+              <br/>
+              <button ngf-select="uploadUserFiles($files)"
+           accept="image/*">Select Files</button>
+   <br>
+   <br>Files:
+   <ul>
+       <li ng-repeat="f in files" style="font:smaller">
+           {{f.name}}
+       </li>
+   </ul>
+   <span class="progress" ng-show="progress >= 0">
+       <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+   </span>
+   {{errorMsg}}
+
+   <div ngf-thumbnail="file"  ngf-size="{width: 20, height: 20, quality: 0.9}" ngf-as-background="boolean">
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

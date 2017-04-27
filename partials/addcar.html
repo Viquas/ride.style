@@ -1,0 +1,108 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Add New Car</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+
+        <div class="col-sm-10 ">
+              <h4 class="header blue lighter bigger">
+                Add new car
+              </h4>
+              <br/>
+              <form name="carUploadForm" class="form-horizontal" role="form">
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="email" >Car Name</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Car Name" name="name" ng-model="car.name" required focus/>
+                               <span ng-show="carUploadForm.name.$empty" class="help-inline">Name cannot be empty</span>
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="name">Car model</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Car Model" name="model" ng-model="car.model" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="make">Car make</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                      <select  class="form-control" name="make" ng-model="car.make_id" ng-options="obj.id as obj.name for obj in models" required/>
+
+                      </select>
+                      <!-- <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small> -->
+                  </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="password">Car category</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                      <select  class="form-control" name = "category" ng-model="car.car_category_id" ng-options="obj.id as obj.name for obj in category" required/>
+
+                      </select>
+                      <!-- <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small> -->
+                  </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="password">Car Transmission</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                      <select  class="form-control" name = "transmission" ng-model="car.transmission_id" ng-options="obj.id as obj.name for obj in transmission" required/>
+
+                      </select>
+                      <!-- <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small> -->
+                  </span>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="password">Year</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                      <select  class="form-control" name = "year" ng-model="car.year" ng-options="year for year in years"  required/>
+                      <!-- <option value="{{cat.id}}" ng-repeat="cat in category">{{cat.name}}</option> -->
+                      </select>
+                      <!-- <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small> -->
+                  </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="name">Other information</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                      <textarea  class="form-control" placeholder="Details" ng-model="car.information" required/>
+                    </textarea>
+                  </span>
+                      </div>
+                  </div>
+
+
+                  <div class="form-group">
+                      <span class="lbl col-sm-5"> </span>
+                      <div class="col-sm-7">
+                      <a href="" class="width-35 pull-right btn btn-sm btn-primary" ng-click="second(car)" ng-disabled="carUploadForm.$invalid">Next</a>
+
+                      </div>
+                  </div>
+                  </fieldset>
+                  <span class="lbl col-sm-5"> </span>
+
+                  </div>
+              </form>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

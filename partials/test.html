@@ -1,0 +1,46 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Add New Car</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+
+        <div class="col-sm-10 ">
+              <h4 class="header blue lighter bigger">
+                Add new car
+              </h4>
+              <br/>
+              <form name="carUploadForm" class="form-horizontal" role="form">
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="email" >Date</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                            <input type="text" datepicker-popup="{{format}}" ng-model="start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" />
+              <button class="btn" ng-click="openStart()"><i class="icon-calendar"></i></button>
+          
+                          </span>
+                      </div>
+                  </div>
+
+
+                  <div class="form-group">
+                      <span class="lbl col-sm-5"> </span>
+                      <div class="col-sm-7">
+                      <a href="" class="width-35 pull-right btn btn-sm btn-primary" ng-click="second(car)" ng-disabled="carUploadForm.$invalid">Next</a>
+
+                      </div>
+                  </div>
+                  </fieldset>
+                  <span class="lbl col-sm-5"> </span>
+
+                  </div>
+              </form>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

@@ -1,0 +1,116 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Add New Car</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+
+        <div class="col-sm-10 ">
+              <h4 class="header blue lighter bigger">
+                Book your car
+              </h4>
+              <br/>
+              <form name="bookTimingForm" class="form-horizontal" role="form">
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Daily price" >From</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="datetime-local" class="form-control" placeholder="Daily price" name="from_time" ng-model="book.from_time"  required />
+                               <!-- <span ng-show="carUploadForm.name.$empty" class="help-inline">Name cannot be empty</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Daily price" >To</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="datetime-local" class="form-control" placeholder="Daily price" name="to_time" ng-model="book.to_time" required />
+                               <!-- <span ng-show="carUploadForm.name.$empty" class="help-inline">Name cannot be empty</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Chauffeur" >Chauffeur</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <select class="form-control"  name="chauffeur" ng-model="book.chauffeur" required>
+                                <option value=1>Yes</option>
+                                <option value=0>No</option>
+                              </select>
+                          </span>
+                      </div>
+                  </div>
+                  <div ng-show="book.chauffeur == 1">
+                  <div class="form-group"  >
+                      <label class="col-sm-5 control-label no-padding-right" for="Chauffeur" >Chauffeur location</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Where you want chauffeur to pick you up" name="chauffeur_location" ng-model="book.chauffeur_location"  />
+                          </span>
+                      </div>
+                  </div>
+                </div>
+                  <div ng-show="book.chauffeur == 0">
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Chauffeur" >Delivery location</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Where you want your car to be delivered" name="delivery_location" ng-model="book.delivery_location"  />
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Chauffeur" >Collection location</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Where should we collect the car" name="collection_location" ng-model="book.collection_location"  />
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Chauffeur" >Pick up location</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Where do you want pick the the car" name="pickup_location" ng-model="book.pickup_location"  />
+                          </span>
+                      </div>
+                  </div>
+                </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Distance" >Distance</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Distance" name="distance" ng-model="book.distance" required />
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Distance" >Additional request</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <textarea type="text" class="form-control" placeholder="Additional Request" name="additional_request" ng-model="book.additional_request" required />
+                            </textarea>
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <span class="lbl col-sm-5"> </span>
+                      <div class="col-sm-7">
+                      <a href="" class="width-35 pull-right btn btn-sm btn-primary" ng-click="bookNow(book)"  ng-disabled="bookTimingForm.$invalid">Next</a>
+                      <!-- <a href="" class="width-35 pull-right btn btn-sm btn-primary" ng-click="thirdUpdate(car)" ng-show="update" ng-disabled="carSpecsForm.$invalid" >Update</a> -->
+                      </div>
+                  </div>
+                  </fieldset>
+                  <span class="lbl col-sm-5"> </span>
+
+                  </div>
+              </form>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

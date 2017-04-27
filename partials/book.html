@@ -1,0 +1,127 @@
+<section class="padded">
+  <div class="container" >
+
+    <div class="row">
+      <div class="col-sm-2" >
+        <p class="spec_text text-right "><img src="img/prev-page.png" class="prev-icon"> </img>&nbsp;Back
+        </p>
+      </div>
+      <div class="col-sm-8" >
+        <p class="text-center">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <p class="text-center page-info">
+        How you get the car
+      </p>
+      <hr class="gold_line"> </hr>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-6 col-md-8 col-sm-12 col-lg-offset-3" >
+        <div class="form-group">
+          <input type="checkbox" id="checkbox-1-1" class="ui-checkbox" ng-model="chauffeur_selected" />
+          <label class="label-text" for="checkbox-1-1">I need a chauffeur</label>
+          <hr></hr>
+        </div>
+        <!--Start show this if chauffeur is  choosen -->
+        <div  class="" ng-show="chauffeur_selected">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
+              <input class="form-input text-input-small" type="text" placeholder="Enter pickup location">
+            </div>
+          </div>
+
+        </div>
+        <!--End show this if chauffeur is  choosen -->
+
+
+          <!--Start show this if chauffeur is not choosen -->
+        <div  class=""  ng-show="!chauffeur_selected">
+          <div class="form-group">
+            <div class="col-lg-6">
+              <div class="reg">
+                <label><input type="radio" name="optradio" value="0" ng-model="deliver_the_Car">
+                  <span></span>
+                </label>
+                <abbr> Deliver the car to me </abbr>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="reg">
+                <label><input type="radio" name="optradio" value="1" ng-model="deliver_the_Car">
+                  <span></span>
+                </label>
+                <abbr> I'll pick up the car </abbr>
+              </div>
+            </div>
+          </div>
+
+          <!--Start show this if user chooses to deliver  the car -->
+          <div class="" ng-show="deliver_the_Car == 0">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
+              <input class="form-input text-input-small" type="text" placeholder="Delivery Address">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group" style="width: 100%">
+              <span class="input-group-addon checkbox-group-addon-small">
+                <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector"> </span>
+              <input class="form-input text-input-small" type="text" placeholder="Collection address same as delivery">
+            </div>
+          </div>
+
+
+
+        </div>
+        <!--End show this if user chooses to deliver  the car -->
+        <!--Start show this if user chooses to pick up the car -->
+        <div class="" ng-show="deliver_the_Car == 1">
+          <div id="carLocationMap"></div>
+   <script>
+     function initMap() {
+       var uluru = {lat: 51.528308, lng: -0.3818017};
+       var map = new google.maps.Map(document.getElementById('carLocationMap'), {
+         zoom: 14,
+         center: uluru
+       });
+       var marker = new google.maps.Marker({
+         position: uluru,
+         map: map
+       });
+     }
+   </script>
+   <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfPfxy4MfDhcQhsOj2jEvmkXVHGezzR_U&callback=initMap">
+   </script>
+        </div>
+        <!--End show this if user chooses to pick up the car -->
+        </div>
+        <!--End show this if chauffeur is choosen -->
+
+        <div class="form-group">
+          <textarea class="form-control text-textarea-small" rows="3" placeholder="Additional request"></textarea>
+        </div>
+        <div class="form-group">
+          <p class="text-center">
+            <a href="work.php" class=" btn golden-button btn-lg btn-center" role="button" >
+              Proceed
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

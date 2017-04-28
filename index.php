@@ -17,7 +17,9 @@
           <link rel="stylesheet" type="text/css" href="css/flaticons/flaticon.css">
           <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.0.0/rzslider.min.css"/>
           <link rel="stylesheet" type="text/css" href="css/demo.css" />
+          <link rel="stylesheet" type="text/css" href="css/button.css" />
       		<script src="js/modernizr.custom.js"></script>
+          <script src="js/modernizr1.custom.js"></script>
 
 
               </head>
@@ -91,7 +93,8 @@
   <script src="js/toaster.js"></script>
   <script src="js/classie.js"></script>
   <script src="js/sidebarEffects.js"></script>
- <script src="js/cbpFWTabs.js"></script>
+  <script src="js/cbpFWTabs.js"></script>
+  <script src="js/progressButton.js"></script>
 
   <script src="app/app.js"></script>
   <script src="app/data.js"></script>

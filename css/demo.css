@@ -653,7 +653,26 @@ textarea.text-textarea-small{
 	padding-left: 8px;
 	margin-bottom: 0px;
 }
+.card-title{
+	font-size: 20px;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-align: left;
+	padding-left: 25px;
+	/*margin-bottom: 20px;*/
 
+
+}
+
+.card-title:before {
+  content : "";
+  position: absolute;
+  bottom :0;
+	left:8%;
+  height  : 2px;
+  width   : 5%;  /* or 100px */
+  border-bottom: 2px solid #c9a657;
+}
 select.filter{
 	width: 100%;
 	border: 1px solid #c9a657;
@@ -1061,7 +1080,7 @@ span.dot1.last:after{
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
 
-     border-top: 0px solid #ddd; 
+     border-top: 0px solid #ddd;
 }
 
 @media screen and (max-width: 25em) {

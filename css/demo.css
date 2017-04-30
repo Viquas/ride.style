@@ -992,6 +992,27 @@ bottom: 3px;
     top: 0;
     width: 8px;
 }
+
+.verify-img{
+ width: 400px;
+ height: 250px;
+}
+
+.car-top{
+	width: 500px;
+	height: 300px;
+	float: right;
+}
+.no-padding{
+	padding: 0px;
+}
+.verify_text{
+	line-height: 30px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
 @media screen and (max-width: 46.0625em) {
 	.home{
 		background-size: cover;

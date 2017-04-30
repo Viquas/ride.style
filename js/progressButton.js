@@ -9,7 +9,7 @@
  * http://www.codrops.com
  */
 ;( function( window ) {
-	
+
 	'use strict';
 
 	// https://gist.github.com/edankwan/4389601
@@ -153,7 +153,7 @@
 						self.progress.addEventListener( transEndEventName, onEndTransFn );
 					}
 					else {
-						onEndTransFn.call();
+						// onEndTransFn.call();
 					}
 
 				}

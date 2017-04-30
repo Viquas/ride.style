@@ -19,15 +19,16 @@
 .progress-button {
 	position: relative;
 	display: inline-block;
-	padding: 0 60px;
+	padding: 0 50px;
 	outline: none;
 	border: none;
-	background: #1d9650;
-	color: #fff;
-	text-transform: uppercase;
+	background: white;
+	color: black;
 	letter-spacing: 1px;
-	font-size: 1em;
-	line-height: 4;
+	font-size: 18px;
+	line-height: 3;
+	border: 2px solid #c9a657;
+	letter-spacing: 0.1em;
 }
 
 .progress-button[disabled],
@@ -44,7 +45,7 @@
 .progress-button .content::after  {
 	position: absolute;
 	right: 20px;
-	color: #0e7138;
+	color: #c9a657;
 	font-family: "icomoon";
 	opacity: 0;
 	-webkit-transition: opacity 0.3s 0.3s;
@@ -76,7 +77,7 @@
 .progress-button .progress-inner {
 	position: absolute;
 	left: 0;
-	background: #0e7138;
+	background: #fcf2db;
 }
 
 .progress-button[data-horizontal] .progress-inner {
@@ -156,4 +157,3 @@
 	-webkit-transform: translateY(-100%);
 	transform: translateY(-100%);
 }
-

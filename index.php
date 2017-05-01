@@ -55,8 +55,8 @@
                         <p class="logo-text"> Menu</p>
                       </button>
 
-                      <a href="" class="logo-link">
-                        <img src="img/logo.png" class="logo-img"> </img>
+                      <a href="#/" class="logo-link">
+                        <img src="img/logo.png" class="logo-img" > </img>
                       </a>
 
                         <button type="button" class="user" >

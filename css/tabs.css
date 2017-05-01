@@ -288,6 +288,26 @@ select.time-select{
 	background: white;
 }
 
+input.date-input-small{
+	border: 1px solid #c9a657;
+	padding:5px 0px;
+
+	width:100%;
+	height: 35px;
+}
+select.time-select-small{
+	border: 1px solid #c9a657;
+	border-left:none;
+	padding:5px;
+	width: 100%;
+	height: 35px;
+	border-radius: 0;
+	-webkit-appearance: none;
+	background: white;
+}
+
+
+
 input.text-input{
 	border: 1px solid #c9a657;
 
@@ -340,6 +360,19 @@ input[type="date"].date-input::-webkit-input-placeholder {
     border: 1px solid #c9a657;
     border-radius: 0px;
 		border-top: 0px;
+}
+
+.time-group-addon-small {
+    padding: 6px 0px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+		background-color: white;
+    border: 1px solid #c9a657;
+    border-radius: 0px;
+		border-right: 0px;
 }
 .search-button{
 	width:200px;

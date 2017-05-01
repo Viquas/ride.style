@@ -543,8 +543,9 @@ color: #b5b5b5;
 		background-color: white;
     border: 1px solid #c9a657;
     border-radius: 0px;
-		border-left:0px;
+
 		border-right:0px;
+		margin-left: -20px;
 }
 input.form-text{
 	border: 0px;

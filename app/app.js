@@ -1,7 +1,7 @@
 var app = angular.module('myApp', ['rzModule','ngRoute', 'ngAnimate','ngFileUpload','ui.bootstrap']);
 
-app.config(['$routeProvider',
-  function ($routeProvider) {
+app.config(['$routeProvider','$locationProvider',
+  function ($routeProvider,$locationProvider) {
         $routeProvider.
         when('/login', {
             title: 'Login',
@@ -108,7 +108,25 @@ app.config(['$routeProvider',
             .otherwise({
                 redirectTo: '/login'
             });
+
+            //  $locationProvider.html5Mode(true);
   }])
+
+
+
+
+      .service("dates",function SetDates(){
+        var datesTime = this;
+        var today = new Date();
+        var tomorrow = new Date();
+        tomorrow.setDate(today + 1);
+        datesTime.startDate = today;
+        datesTime.endDate = today;
+        datesTime.startTime = '';
+        datesTime.endTime = '';
+        datesTime.set = false;
+      })
+
     .run(function ($rootScope, $location, Data) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             // $rootScope.authenticated = false;

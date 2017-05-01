@@ -1,46 +1,56 @@
-app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data, $timeout, dates) {
+
+  var first = this;
+  first.datesTime = dates;
+  console.log(first.datesTime);
 
   Data.get('getAllUser').then(function (results) {
       $scope.allUsers = results.value;
   });
 
-  $scope.startDate = 'today';
-  $scope.endDate = 'tomorrow';
+  $scope.startTime = '12am';
+  $scope.endTime = '12am';
 
   $.fn.datepicker.defaults.format = "dd/mm/yyyy";
 
   $('#startDate').datepicker({
-   startDate: '01/05/2017',
+   startDate: 'today',
    daysOfWeekDisabled: [0],
    autoclose: true,
    });
 
-  $('#startDate').datepicker('setDate', $scope.startDate);
 
-  $("#startDate").on("change",function(){
-      $scope.startDate = $(this).val();
-      console.log($scope.startDate);
-      $scope.updateEndDate;
-      $scope.$apply()
+
+   $("#startDate").on("change",function(){
+      $scope.startDateM = $(this).val();
+      $scope.endDateM  = $(this).val();
+        $scope.updateEndDate();
    });
 
     $scope.updateEndDate;
 
    $scope.updateEndDate = function(){
-     $('#endDate').datepicker('setDate', $scope.startDate);
+    $('#endDate').datepicker('setStartDate', $scope.startDateM);
+      $scope.$apply();
    }
 
+
    $('#endDate').datepicker({
-    daysOfWeekDisabled: [0],
+  startDate: 'tomorrow',
     autoclose: true,
     });
 
 
    $("#endDate").on("change",function(){
-       $scope.endDate = $(this).val();
+
+
     });
 
-   $('#endDate').datepicker('setDate', $scope.endDate);
+    $timeout(function () {
+      $('#endDate').datepicker('setDate', '+2d');
+      $('#startDate').datepicker('setDate', '+1d');
+      // $scope.apply();
+}, 300);
 
 
   var user_id = 187;
@@ -48,6 +58,7 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
       $scope.me = results.value;
 
   });
+
 
 
 
@@ -59,8 +70,20 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
   };
 
 
-  //start here Date picker angular ui
 
+  // Start searching by date
+
+
+  $scope.searchDate =function(){
+    first.datesTime.startDate = $scope.startDateM;
+      first.datesTime.endDate = $scope.endDateM;
+        first.datesTime.startTime = $scope.startTime;
+          first.datesTime.endTime = $scope.endTime;
+          first.datesTime.set = true;
+          $location.path("/car");
+          // get request to search the db for dated parameters
+
+  };
 
 
 

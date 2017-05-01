@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['rzModule','ngRoute', 'ngAnimate', 'toaster','ngFileUpload','ui.bootstrap']);
+var app = angular.module('myApp', ['rzModule','ngRoute', 'ngAnimate','ngFileUpload','ui.bootstrap']);
 
 app.config(['$routeProvider',
   function ($routeProvider) {

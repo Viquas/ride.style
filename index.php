@@ -7,8 +7,10 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
           <title>AngularJS Authentication App</title>
           <!-- Bootstrap -->
-          <link rel="shortcut icon" href="../favicon.ico">
+
+          <link href="img/favicon.png" rel="shortcut icon">
           <link rel="stylesheet" href="css/bootstrap.min.css">
+          <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
       		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
           <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
           <link rel="stylesheet" type="text/css" href="css/tabs.css" />
@@ -65,7 +67,6 @@
 
                       </div>
 
-
                           <div data-ng-view="" id="ng-view" class="slide-animation">
                           </div>
 
@@ -80,17 +81,18 @@
 
       </div>
     </body>
-  <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+
   <!-- Libs -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="js/angular.min.js"></script>
   <script src="js/angular-route.min.js"></script>
   <script src="js/angular-animate.min.js" ></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
   <script src="ui-bootstrap-custom-build/ui-bootstrap-custom-2.5.0.js" rel="stylesheet"></script>
   <script src="ui-bootstrap-custom-build/ui-bootstrap-custom-tpls-2.5.0.js" rel="stylesheet"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.0.0/rzslider.min.js"></script>
-  <script src="js/toaster.js"></script>
+  <script src="js/ui-bootstrap-2.5.0.min.js"></script>
   <script src="js/classie.js"></script>
   <script src="js/sidebarEffects.js"></script>
   <script src="js/cbpFWTabs.js"></script>

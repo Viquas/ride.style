@@ -275,13 +275,17 @@
 input.date-input{
 	border: 1px solid #c9a657;
 	padding:5px;
-	width:178px;
+	width:100%;
 }
-input.time-input{
+select.time-select{
 	border: 1px solid #c9a657;
 	border-top:none;
 	padding:5px;
 	width: 100%;
+	height: 33px;
+	border-radius: 0;
+	-webkit-appearance: none;
+	background: white;
 }
 
 input.text-input{

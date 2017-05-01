@@ -32,13 +32,19 @@
                 <p class="date-title"> Start Date </p>
                 <div class="input-group">
                   <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
-                <input class="form-input date-input" type="date">  </input>
+                <!-- <input class="form-input date-input" type="date">  </input> -->
+                <input data-provide="datepicker" class=" date-input " id="startDate" onkeydown="return false" >
                 </div>
                 <div class="input-group">
-                  <div class="input-group-addon time-group-addon"><i class="flaticon flaticon-clock-1"></i></div>
-              <input class="form-input time-input" type="time">
+                  <div class="input-group-addon time-group-addon">
+                    <i class="flaticon flaticon-clock-1"></i></div>
+              <select class="form-input time-select">
+                <option value="">12 AM </option>
+                  <option value="">1 AM </option>
+
+              </select>
               </div>
-            </input>
+
 
               </div>
               <div class="col-sm-2">
@@ -48,12 +54,17 @@
                 <p class="date-title"> End Date </p>
                 <div class="input-group">
                   <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
-                <input class="form-input date-input" type="date">  </input>
+                <input data-provide="datepicker" class=" date-input " id="endDate" onkeydown="return false" >
                 </div>
                 <div class="input-group">
-                  <div class="input-group-addon time-group-addon"><i class="flaticon flaticon-clock-1"></i></div>
-              <input class="form-input time-input" type="time">
+                  <div class="input-group-addon time-group-addon">
+                    <i class="flaticon flaticon-clock-1"></i></div>
+              <select class="form-input time-select">
+                  <option value="">12 AM </option>
+                  <option value="">1 AM </option>
+              </select>
               </div>
+              {{startDate}} - {{endDate}}
               </div>
               <div class="col-sm-12">
               <a href="work.php" class=" btn golden-button-black btn-lg search-button " role="button" >

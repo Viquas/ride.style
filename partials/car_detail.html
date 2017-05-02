@@ -19,6 +19,7 @@
                 </div>
               </div>
               <div class="item">
+
                 <img src="http://wallpapercave.com/wp/qa3ExnD.jpg" />
                 <div class="carousel-caption">
 
@@ -44,14 +45,14 @@
       </div>
 
       <div class="col-sm-8">
-        <h3 ><span class="detailTitle">Lamborghini Aventador</span><span class="detailSubTitle">Pirelli Edition</span></h3>
-        <h3 ><span class="detailYear">2014</span></h3>
+        <h3 ><span class="detailTitle">{{car.name}}</span><span class="detailSubTitle">{{car.model}}</span></h3>
+        <h3 ><span class="detailYear">{{car.year}}</span></h3>
       </div>
       <div class="col-sm-3 ">
         <h3 class="pull-right vertical-center">
           <span class="detailPrice">
             <small >£</small>
-            <span class="rufina-big">500</span>
+            <span class="rufina-big">{{car.daily_price}}</span>
             <small class="rufina">/day</small>
           </span>
         </h3>
@@ -75,39 +76,39 @@
         <p class="spec_text">730 BPH</p>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-4">
+        <img src="img/transmission.png" class="specImg center-block"> </img>
+        <hr class="gold_line"></hr>
+        <p class="spec_text">Transmission</p>
+        <hr class=""></hr>
+        <p class="spec_text">{{car.transmission}}</p>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4">
+        <img src="img/speed.png" class="specImg center-block"> </img>
+        <hr class="gold_line"></hr>
+        <p class="spec_text">0-60 mph</p>
+        <hr class=""></hr>
+        <p class="spec_text">2.9 Secs</p>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4">
+        <img src="img/top_speed.png" class="specImg center-block"> </img>
+        <hr class="gold_line"></hr>
+        <p class="spec_text">Top Speed</p>
+        <hr class=""></hr>
+        <p class="spec_text">220 mph</p>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-4">
         <img src="img/gas.png" class="specImg center-block"> </img>
         <hr class="gold_line"></hr>
-        <p class="spec_text">Horsepower</p>
+        <p class="spec_text">Fuel Type</p>
         <hr class=""></hr>
-        <p class="spec_text">730 BPH</p>
+        <p class="spec_text">Gas</p>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-4">
-        <img src="img/bhp.png" class="specImg center-block"> </img>
+        <img src="img/seat.png" class="specImg center-block"> </img>
         <hr class="gold_line"></hr>
-        <p class="spec_text">Horsepower</p>
+        <p class="spec_text">Seats</p>
         <hr class=""></hr>
-        <p class="spec_text">730 BPH</p>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-4">
-        <img src="img/bhp.png" class="specImg center-block"> </img>
-        <hr class="gold_line"></hr>
-        <p class="spec_text">Horsepower</p>
-        <hr class=""></hr>
-        <p class="spec_text">730 BPH</p>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-4">
-        <img src="img/bhp.png" class="specImg center-block"> </img>
-        <hr class="gold_line"></hr>
-        <p class="spec_text">Horsepower</p>
-        <hr class=""></hr>
-        <p class="spec_text">730 BPH</p>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-4">
-        <img src="img/bhp.png" class="specImg center-block"> </img>
-        <hr class="gold_line"></hr>
-        <p class="spec_text">Horsepower</p>
-        <hr class=""></hr>
-        <p class="spec_text">730 BPH</p>
+        <p class="spec_text">2 Seats</p>
       </div>
 
     </div>
@@ -126,24 +127,96 @@
     <div class="row">
       <div class="col-sm-5">
         <p class="filter-title"> Start Date </p>
-        <div class="input-group">
-          <div class="input-group-addon date-group-addon-small"><i class="flaticon flaticon-calendar-6"></i></div>
-        <input class="form-input date-input-small" type="date">  </input>
-        <div class="input-group-addon time-group-addon-small"><i class="flaticon flaticon-clock-1"></i></div>
-      <input class="form-input time-input-small" type="time"></input>
-        </div>
+
+        <div class="col-sm-6">
+
+          <div class="input-group">
+            <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
+          <!-- <input class="form-input date-input" type="date">  </input> -->
+          <input data-provide="datepicker" class=" date-input-small " id="startDate" onkeydown="return false"  ng-model="startDateM">
+          </div>
+            </div>
+                        <div class="col-sm-6">
+                    <div class="input-group">
+                      <div class="input-group-addon time-group-addon-small">
+                        <i class="flaticon flaticon-clock-1"></i></div>
+                  <select class="form-input time-select-small" ng-model="startTime">
+                    <option value="00:00:00">12 AM </option>
+                    <option value="01:00:00">1 AM </option>
+                    <option value="02:00:00">2 AM </option>
+                    <option value="03:00:00">3 AM </option>
+                    <option value="04:00:00">4 AM </option>
+                    <option value="05:00:00">5 AM </option>
+                    <option value="06:00:00">6 AM </option>
+                    <option value="07:00:00">7 AM </option>
+                    <option value="08:00:00">8 AM </option>
+                    <option value="09:00:00">9 AM </option>
+                    <option value="10:00:00">10 AM </option>
+                    <option value="11:00:00">11 AM </option>
+                    <option value="12:00:00">12 PM </option>
+                    <option value="13:00:00">1 PM </option>
+                    <option value="14:00:00">2 PM </option>
+                    <option value="15:00:00">3 PM </option>
+                    <option value="16:00:00">4 PM </option>
+                    <option value="17:00:00">5 PM </option>
+                    <option value="18:00:00">6 AM </option>
+                    <option value="19:00:00">7 PM </option>
+                    <option value="20:00:00">8 PM </option>
+                    <option value="21:00:00">9 PM </option>
+                    <option value="22:00:00">10 PM </option>
+                    <option value="23:00:00">11 PM </option>
+
+                  </select>
+                  </div>
+                  </div>
       </div>
       <div class="col-sm-2">
 
       </div>
       <div class="col-sm-5 filters">
         <p class="filter-title"> End Date </p>
-        <div class="input-group">
-          <div class="input-group-addon date-group-addon-small"><i class="flaticon flaticon-calendar-6"></i></div>
-        <input class="form-input date-input-small" type="date">  </input>
-        <div class="input-group-addon time-group-addon-small"><i class="flaticon flaticon-clock-1"></i></div>
-    <input class="form-input time-input-small" type="time"></input>
-        </div>
+        <div class="col-sm-6">
+
+          <div class="input-group">
+            <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
+          <!-- <input class="form-input date-input" type="date">  </input> -->
+          <input data-provide="datepicker" class=" date-input-small " id="endDate" onkeydown="return false"  ng-model="endDateM">
+          </div>
+            </div>
+
+                        <div class="col-sm-6">
+                    <div class="input-group">
+                      <div class="input-group-addon time-group-addon-small">
+                        <i class="flaticon flaticon-clock-1"></i></div>
+                  <select class="form-input time-select-small" ng-model="endTime">
+                    <option value="00:00:00">12 AM </option>
+                    <option value="01:00:00">1 AM </option>
+                    <option value="02:00:00">2 AM </option>
+                    <option value="03:00:00">3 AM </option>
+                    <option value="04:00:00">4 AM </option>
+                    <option value="05:00:00">5 AM </option>
+                    <option value="06:00:00">6 AM </option>
+                    <option value="07:00:00">7 AM </option>
+                    <option value="08:00:00">8 AM </option>
+                    <option value="09:00:00">9 AM </option>
+                    <option value="10:00:00">10 AM </option>
+                    <option value="11:00:00">11 AM </option>
+                    <option value="12:00:00">12 PM </option>
+                    <option value="13:00:00">1 PM </option>
+                    <option value="14:00:00">2 PM </option>
+                    <option value="15:00:00">3 PM </option>
+                    <option value="16:00:00">4 PM </option>
+                    <option value="17:00:00">5 PM </option>
+                    <option value="18:00:00">6 AM </option>
+                    <option value="19:00:00">7 PM </option>
+                    <option value="20:00:00">8 PM </option>
+                    <option value="21:00:00">9 PM </option>
+                    <option value="22:00:00">10 PM </option>
+                    <option value="23:00:00">11 PM </option>
+
+                  </select>
+                  </div>
+                  </div>
       </div>
     </div>
     <div class="row">
@@ -158,12 +231,18 @@
               <tr>
                 <td class="text-right">Daily price</td>
                   <td class="col-md-2"></td>
-                <td class="text-left">£550</td>
+                <td class="text-left">£{{car.daily_price}}</td>
               </tr>
+              <tr>
+                <td class="text-right">Weekly price</td>
+                  <td class="col-md-2"></td>
+                <td class="text-left">£{{car.weekly_price}}</td>
+              </tr>
+
               <tr>
                 <td class="text-right">Security deposit</td>
                   <td class="col-md-2"></td>
-                <td class="text-left">£7550</td>
+                <td class="text-left">£{{car.security_deposit}}</td>
               </tr>
 
             </tbody>

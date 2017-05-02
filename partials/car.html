@@ -21,30 +21,30 @@
           <div class="input-group-addon time-group-addon-small">
             <i class="flaticon flaticon-clock-1"></i></div>
       <select class="form-input time-select-small" ng-model="startTime">
-        <option value="12am">12 AM </option>
-        <option value="1am">1 AM </option>
-        <option value="2am">2 AM </option>
-        <option value="3am">3 AM </option>
-        <option value="4am">4 AM </option>
-        <option value="5am">5 AM </option>
-        <option value="6am">6 AM </option>
-        <option value="7am">7 AM </option>
-        <option value="8am">8 AM </option>
-        <option value="9am">9 AM </option>
-        <option value="10am">10 AM </option>
-        <option value="11am">11 AM </option>
-        <option value="12pm">12 PM </option>
-        <option value="1pm">1 PM </option>
-        <option value="2pm">2 PM </option>
-        <option value="3pm">3 PM </option>
-        <option value="4pm">4 PM </option>
-        <option value="5pm">5 PM </option>
-        <option value="6pm">6 AM </option>
-        <option value="7pm">7 PM </option>
-        <option value="8pm">8 PM </option>
-        <option value="9pm">9 PM </option>
-        <option value="10pm">10 PM </option>
-        <option value="11pm">11 PM </option>
+        <option value="00:00:00">12 AM </option>
+        <option value="01:00:00">1 AM </option>
+        <option value="02:00:00">2 AM </option>
+        <option value="03:00:00">3 AM </option>
+        <option value="04:00:00">4 AM </option>
+        <option value="05:00:00">5 AM </option>
+        <option value="06:00:00">6 AM </option>
+        <option value="07:00:00">7 AM </option>
+        <option value="08:00:00">8 AM </option>
+        <option value="09:00:00">9 AM </option>
+        <option value="10:00:00">10 AM </option>
+        <option value="11:00:00">11 AM </option>
+        <option value="12:00:00">12 PM </option>
+        <option value="13:00:00">1 PM </option>
+        <option value="14:00:00">2 PM </option>
+        <option value="15:00:00">3 PM </option>
+        <option value="16:00:00">4 PM </option>
+        <option value="17:00:00">5 PM </option>
+        <option value="18:00:00">6 AM </option>
+        <option value="19:00:00">7 PM </option>
+        <option value="20:00:00">8 PM </option>
+        <option value="21:00:00">9 PM </option>
+        <option value="22:00:00">10 PM </option>
+        <option value="23:00:00">11 PM </option>
       </select>
       </div>
       </div>
@@ -68,30 +68,30 @@
           <div class="input-group-addon time-group-addon-small">
             <i class="flaticon flaticon-clock-1"></i></div>
       <select class="form-input time-select-small" ng-model="endTime">
-        <option value="12am">12 AM </option>
-        <option value="1am">1 AM </option>
-        <option value="2am">2 AM </option>
-        <option value="3am">3 AM </option>
-        <option value="4am">4 AM </option>
-        <option value="5am">5 AM </option>
-        <option value="6am">6 AM </option>
-        <option value="7am">7 AM </option>
-        <option value="8am">8 AM </option>
-        <option value="9am">9 AM </option>
-        <option value="10am">10 AM </option>
-        <option value="11am">11 AM </option>
-        <option value="12pm">12 PM </option>
-        <option value="1pm">1 PM </option>
-        <option value="2pm">2 PM </option>
-        <option value="3pm">3 PM </option>
-        <option value="4pm">4 PM </option>
-        <option value="5pm">5 PM </option>
-        <option value="6pm">6 AM </option>
-        <option value="7pm">7 PM </option>
-        <option value="8pm">8 PM </option>
-        <option value="9pm">9 PM </option>
-        <option value="10pm">10 PM </option>
-        <option value="11pm">11 PM </option>
+        <option value="00:00:00">12 AM </option>
+        <option value="01:00:00">1 AM </option>
+        <option value="02:00:00">2 AM </option>
+        <option value="03:00:00">3 AM </option>
+        <option value="04:00:00">4 AM </option>
+        <option value="05:00:00">5 AM </option>
+        <option value="06:00:00">6 AM </option>
+        <option value="07:00:00">7 AM </option>
+        <option value="08:00:00">8 AM </option>
+        <option value="09:00:00">9 AM </option>
+        <option value="10:00:00">10 AM </option>
+        <option value="11:00:00">11 AM </option>
+        <option value="12:00:00">12 PM </option>
+        <option value="13:00:00">1 PM </option>
+        <option value="14:00:00">2 PM </option>
+        <option value="15:00:00">3 PM </option>
+        <option value="16:00:00">4 PM </option>
+        <option value="17:00:00">5 PM </option>
+        <option value="18:00:00">6 AM </option>
+        <option value="19:00:00">7 PM </option>
+        <option value="20:00:00">8 PM </option>
+        <option value="21:00:00">9 PM </option>
+        <option value="22:00:00">10 PM </option>
+        <option value="23:00:00">11 PM </option>
 
       </select>
       </div>
@@ -108,64 +108,70 @@
     </div>
     <div class="col-sm-12 filters">
         <p class="filter-title"> Vehicle Type </p>
-      <select class="filter">
-        <<option value="0">Sedan </option>
-      </select>
+        <select  class="form-control filter" name="category" ng-model="category_select" ng-options="obj.id as obj.name for obj in category"  required/>
+
+        </select>
       </div>
       <div class="col-sm-12 filters">
           <p class="filter-title"> Transmisison </p>
-        <select class="filter">
-          <option value="0">Automatic </option>
-        </select>
+          <select  class="form-control filter" name="transmission" ng-model="transmission_select" ng-options="obj.id as obj.type for obj in transmission"  required/>
+
+          </select>
+
         </div>
         <div class="col-sm-12 filters">
             <p class="filter-title"> Vehicle Make </p>
-          <select class="filter">
-            <<option value="0">Audi </option>
-          </select>
+            <select  class="form-control filter" name="make" ng-model="make" ng-options="obj.id as obj.name for obj in models"  required/>
+
+            </select>
+
         </div>
         <div class="col-sm-12 filters">
-          <a class="filter-reset">Reset All</a>
+          <a class="filter-reset" ng-click="reset();">Reset All</a>
         </div>
   </div>
     <div class="col-lg-8" id="right">
+      <!-- No car screeen starts here -->
+      <div class="top-fifty" ng-show="no_car">
+        <p class="text-center" >
+         <img  src="img/logo.png" />
+
+       </p>
+       <p class="spec_text">
+           No cars found
+       </p>
+     </div>
+     <!-- No car screeen ends here -->
+
+      <!-- Loading screeen starts here -->
+      <div ng-show="loading">
+        <p class="text-center" >
+         <img id="loading-effect" src="img/logo.png" />
+       </p>
+     </div>
+     <!-- Loading screeen ends here -->
+       <!-- Car cards starts here -->
+       <div ng-show="!loading" ng-repeat="car in cars" class="car_div" ng-click="car_details(car.id)">
       <div class="car_card">
         <div class="car_card1">
         <img src="img/lambo.jpg" ></img>
       </div>
       </div>
-      <div class="detailcard">
+      <div class="detailcard" >
           <div class="col-sm-1">
             <img class="detail-logo" src="img/Lambo_logo.png"> </img>
           </div>
           <div class="col-sm-8">
-            <h3 ><span class="detailTitle">Lamborghini Aventador</span><span class="detailSubTitle">Pirelli Edition</span></h3>
-            <h3 ><span class="detailYear">2014</span></h3>
+            <h3 ><span class="detailTitle">{{car.name}}</span><span class="detailSubTitle">{{car.model}}</span></h3>
+            <h3 ><span class="detailYear">{{car.year}}</span></h3>
           </div>
           <div class="col-sm-3 ">
-            <h3 class="pull-right vertical-center"><span class="detailPrice"><small>£</small>500/<small>day</small></span></h3>
+            <h3 class="pull-right vertical-center"><span class="detailPrice"><small>£</small>{{car.daily_price}}/<small>day</small></span></h3>
 
           </div>
       </div>
-      <div class="car_card">
-        <div class="car_card1">
-        <img src="img/lambo.jpg" ></img>
       </div>
-      </div>
-      <div class="detailcard">
-          <div class="col-sm-1">
-            <img class="detail-logo" src="img/Lambo_logo.png"> </img>
-          </div>
-
-          <div class="col-sm-8">
-            <h3 ><span class="detailTitle">Lamborghini Aventador</span><span class="detailSubTitle">Pirelli Edition</span></h3>
-            <h3 ><span class="detailYear">2014</span></h3>
-          </div>
-          <div class="col-sm-3 ">
-            <h3 class="pull-right vertical-center"><span class="detailPrice"><small>£</small>500/<small>day</small></span></h3>
-
-          </div>
-      </div>
+      <!-- Car cards ends here -->
 
       <h4 >
 

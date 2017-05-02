@@ -1,17 +1,29 @@
-app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data, $timeout, dates) {
+app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data, $timeout, dates , make) {
+
+// reset the date and make services when in home
+  var today = new Date();
+  var tomorrow = new Date();
+  tomorrow.setDate(today + 1);
+  dates.startDate = today;
+  dates.endDate = today;
+  dates.startTime = '';
+  dates.endTime = '';
+  dates.set = false;
+  make.id = 0;
+  make.name = '';
+  make.set = false;
 
   var first = this;
   first.datesTime = dates;
-  console.log(first.datesTime);
+  first.make = make;
 
   Data.get('getAllUser').then(function (results) {
       $scope.allUsers = results.value;
   });
+  $scope.startTime = '00:00:00';
+  $scope.endTime = '00:00:00';
 
-  $scope.startTime = '12am';
-  $scope.endTime = '12am';
-
-  $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+  $.fn.datepicker.defaults.format = "dd/MM/yyyy";
 
   $('#startDate').datepicker({
    startDate: 'today',
@@ -19,14 +31,11 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
    autoclose: true,
    });
 
-
-
    $("#startDate").on("change",function(){
       $scope.startDateM = $(this).val();
       $scope.endDateM  = $(this).val();
         $scope.updateEndDate();
    });
-
     $scope.updateEndDate;
 
    $scope.updateEndDate = function(){
@@ -34,15 +43,12 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
       $scope.$apply();
    }
 
-
    $('#endDate').datepicker({
   startDate: 'tomorrow',
     autoclose: true,
     });
 
-
    $("#endDate").on("change",function(){
-
 
     });
 
@@ -52,28 +58,21 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
       // $scope.apply();
 }, 300);
 
-
   var user_id = 187;
   Data.get('getUser?user_id='+user_id).then(function (results) {
       $scope.me = results.value;
 
   });
 
-
-
-
   $scope.logout = function () {
       Data.get('logout').then(function (results) {
-        Data.toast(results);
+
           $location.path('login');
       });
   };
 
 
-
   // Start searching by date
-
-
   $scope.searchDate =function(){
     first.datesTime.startDate = $scope.startDateM;
       first.datesTime.endDate = $scope.endDateM;
@@ -85,7 +84,17 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
 
   };
 
+  // Get by make settings
+  Data.get('getNewCarDetails').then(function (results) {
+       $scope.models = results.model;
+       $scope.category = results.category;
+  });
 
+  $scope.searchMake =function(){
+    first.make.id = $scope.make;
+    first.make.set = true;
+    $location.path("/car");
+  };
 
 
 });

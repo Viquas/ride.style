@@ -409,15 +409,17 @@ function getCarImages($tableName,$car_id){
   return $result;
 }
 
-$app->get('/getAllCars', function() use ($app) {
+$app->get('/getCarsByMake', function() use ($app) {
     $db = new DbHandler();
-    $result = $db->getRecord("select u.id, u.name,m.name as make, s.name as category, u.model, u.information, u.year, t.type as transmission,
-    cs.daily_price, cs.weekly_price , cs.security_deposit  from cars u
-    inner join car_category s on u.car_category_id = s.id
-    inner join car_model m on u.make_id = m.id
-    inner join transmission t on u.transmission_id = t.id
-    inner join car_specifications cs on cs.car_id = u.id
- ");
+    $make_id = $app->request()->get('id');
+    $result = $db->getRecord("select u.id, u.name,m.name as make, s.name as category, u.model,
+    u.information, u.year, t.type as transmission, cs.daily_price, cs.weekly_price ,
+     cs.security_deposit from cars u
+     inner join car_category s on u.car_category_id = s.id
+     inner join car_model m on u.make_id = m.id
+     inner join transmission t on u.transmission_id = t.id
+     inner join car_specifications cs on cs.car_id = u.id
+     where m.id = ".$make_id);
 
     $message = '';
     $status = 0;
@@ -467,6 +469,166 @@ $app->get('/getAllCars', function() use ($app) {
     echoResponse(200, array("status"=>200,"message"=>$message,"value"=>$data));
 });
 
+
+
+
+
+$app->get('/getCarsFiltered', function() use ($app) {
+    $db = new DbHandler();
+    $transmission = $app->request()->get('transmission_id');
+    $category = $app->request()->get('category_id');
+    $make = $app->request()->get('make_id');
+    $startDate = $app->request()->get('start_date');
+    $endDate = $app->request()->get('end_date');
+    $low_price = $app->request()->get('low_price');
+    $high_price = $app->request()->get('high_price');
+
+    $query = "SELECT c.id, c.name, m.name as make, s.name as category, c.model, c.information, c.year, t.type as transmission,cs.daily_price, cs.weekly_price , cs.security_deposit
+          FROM cars c
+          inner join car_category s on c.car_category_id = s.id
+          inner join car_model m on c.make_id = m.id
+          inner join transmission t on c.transmission_id = t.id
+          inner join car_specifications cs on cs.car_id = c.id
+          LEFT JOIN car_booking b ON ( c.id = b.car_id AND b.from_time <= '$startDate' AND b.to_time >= '$endDate' )
+          WHERE b.id IS NULL";
+
+          if($category != 0 && $category != NULL){
+              $query .= " AND s.id = ".$category ;
+          }
+          if($transmission != 0 && $transmission != NULL){
+              $query .= " AND t.id = ".$transmission;
+          }
+          if($make != 0 && $make != NULL){
+              $query .= " AND m.id = ".$make;
+          }
+
+          if($high_price != 0 && $low_price != NULL && $high_price != NULL ){
+            $query .= " AND cs.daily_price BETWEEN ". $low_price . " AND " .$high_price;
+          }
+
+
+          // print_r($query);
+
+// Query for selecting the dates with the car
+//  SELECT c.id, c.name, m.name as make, s.name as category, c.model, c.information, c.year, t.type as transmission,cs.daily_price, cs.weekly_price , cs.security_deposit
+// FROM cars c
+// inner join car_category s on c.car_category_id = s.id
+// inner join car_model m on c.make_id = m.id
+// inner join transmission t on c.transmission_id = t.id
+// inner join car_specifications cs on cs.car_id = c.id
+// LEFT JOIN car_booking b ON ( c.id = b.car_id AND b.from_time <= '2017-04-12 05:15:16' AND b.to_time >= '2017-04-21 07:17:19' )
+//  WHERE b.id IS NULL
+
+    $result = $db->getRecord($query);
+    $message = '';
+    $status = 0;
+      $data= array();
+    if ($result != NULL) {
+        $status = 200;
+        for ($i=0; $i < sizeof($result) ; $i++) {
+        $row = $result[$i];
+        $json_obj = new stdClass();
+           $json_obj->{'id'} = $row[0];
+           $json_obj->{'name'} = $row[1];
+           $json_obj->{'make'} = $row[2];
+           $json_obj->{'category'} = $row[3];
+           $json_obj->{'model'} = $row[4];
+           $json_obj->{'information'} = $row[5];
+           $json_obj->{'year'} = $row[6];
+           $json_obj->{'transmission'} = $row[7];
+           $json_obj->{'daily_price'} = $row[8];
+           $json_obj->{'weekly_price'} = $row[9];
+           $json_obj->{'security_deposit'} = $row[10];
+
+           $images = getCarImages('car_images',$row[0]);
+            $image_data = array();
+
+             if(sizeof($images) > 0){
+           for ($j=0; $j < sizeof($images) ; $j++) {
+              $image_obj = new stdClass();
+             $imagerow = $images[$j];
+              $image_obj = new stdClass();
+              $image_obj->{'image_id'} = $imagerow[0];
+              $image_obj->{'car_id'} = $imagerow[1];
+              $image_obj->{'image_link'} = $imagerow[2];
+              $image_data[] = $image_obj;
+           }
+         }
+           $json_obj->{'images'} = $image_data;
+           $data[] = $json_obj;
+        }
+        $message = 'Cars after applying filters';
+        } else {
+            $status = 500;
+            $message = 'No Cars found';
+
+        }
+    echoResponse(200, array("status"=>$status ,"message"=>$message,"value"=>$data));
+});
+
+
+$app->get('/getAllCars', function() use ($app) {
+    $db = new DbHandler();
+    $result = $db->getRecord("select u.id, u.name,m.name as make, s.name as category, u.model, u.information, u.year, t.type as transmission,
+    cs.daily_price, cs.weekly_price , cs.security_deposit  from cars u
+    inner join car_category s on u.car_category_id = s.id
+    inner join car_model m on u.make_id = m.id
+    inner join transmission t on u.transmission_id = t.id
+    inner join car_specifications cs on cs.car_id = u.id
+ ");
+
+
+    $message = '';
+    $status = 0;
+    if ($result != NULL) {
+        $status = 200;
+        $data= array();
+        for ($i=0; $i < sizeof($result) ; $i++) {
+
+        $row = $result[$i];
+        $json_obj = new stdClass();
+           $json_obj->{'id'} = $row[0];
+           $json_obj->{'name'} = $row[1];
+           $json_obj->{'make'} = $row[2];
+           $json_obj->{'category'} = $row[3];
+           $json_obj->{'model'} = $row[4];
+           $json_obj->{'information'} = $row[5];
+           $json_obj->{'year'} = $row[6];
+           $json_obj->{'transmission'} = $row[7];
+           $json_obj->{'daily_price'} = $row[8];
+           $json_obj->{'weekly_price'} = $row[9];
+           $json_obj->{'security_deposit'} = $row[10];
+           // get images of all car id
+           $images = getCarImages('car_images',$row[0]);
+            $image_data = array();
+
+             if(sizeof($images) > 0){
+           for ($j=0; $j < sizeof($images) ; $j++) {
+              $image_obj = new stdClass();
+             $imagerow = $images[$j];
+              $image_obj = new stdClass();
+              $image_obj->{'image_id'} = $imagerow[0];
+              $image_obj->{'car_id'} = $imagerow[1];
+              $image_obj->{'image_link'} = $imagerow[2];
+              $image_data[] = $image_obj;
+           }
+         }
+           $json_obj->{'images'} = $image_data;
+           $data[] = $json_obj;
+        }
+        $message = 'All users';
+        } else {
+            $status = 500;
+            $message = 'No user found';
+
+        }
+
+    echoResponse(200, array("status"=>200,"message"=>$message,"value"=>$data));
+});
+
+
+
+
 $app->get('/getNewCarDetails', function() use ($app) {
     $db = new DbHandler();
     $result = $db->getRecord("SELECT * FROM car_model Where 1");
@@ -474,6 +636,7 @@ $app->get('/getNewCarDetails', function() use ($app) {
     if ($result != NULL) {
         $status = 200;
         $model= array();
+
         for ($i=0; $i < sizeof($result) ; $i++) {
         $row = $result[$i];
         $json_obj = new stdClass();
@@ -486,7 +649,7 @@ $app->get('/getNewCarDetails', function() use ($app) {
             $status = 500;
         }
         $result1 = $db->getRecord("SELECT * FROM car_category Where 1");
-        if ($result != NULL) {
+        if ($result1 != NULL) {
             $status = 200;
             $category= array();
             for ($i=0; $i < sizeof($result1) ; $i++) {
@@ -500,7 +663,23 @@ $app->get('/getNewCarDetails', function() use ($app) {
             } else {
                 $status = 500;
             }
-    echoResponse(200, array("status"=>200,"model"=>$model,"category"=>$category));
+
+            $result2 = $db->getRecord("SELECT * FROM transmission Where 1");
+            if ($result2 != NULL) {
+                $status = 200;
+                $tranmission= array();
+                for ($i=0; $i < sizeof($result2) ; $i++) {
+                $row = $result2[$i];
+                $json_obj = new stdClass();
+                   $json_obj->{'id'} = $row[0];
+                   $json_obj->{'type'} = $row[1];
+                   $tranmission[] = $json_obj;
+                }
+
+                } else {
+                    $status = 500;
+                }
+    echoResponse(200, array("status"=>200,"model"=>$model,"category"=>$category,"transmission"=>$tranmission));
 });
 
 $app->get('/getUser', function() use ($app) {
@@ -556,9 +735,8 @@ $app->get('/getCar', function() use ($app) {
         $json_obj->{'weekly_price'} = floatval($result['weekly_price']);
         $json_obj->{'security_deposit'} = floatval($result['security_deposit']);
         $images = getCarImages('car_images',$result['id']);
-         $image_data = array();
-
-          if(sizeof($images) > 0){
+        $image_data = array();
+        if(sizeof($images) > 0){
         for ($j=0; $j < sizeof($images) ; $j++) {
            $image_obj = new stdClass();
           $imagerow = $images[$j];

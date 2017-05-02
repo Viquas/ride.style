@@ -7,7 +7,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             customer: customer
         }).then(function (results) {
 
-            Data.toast(results);
+
             if (results.status == "success") {
                 $location.path('dashboard');
             }
@@ -19,7 +19,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
         Data.post('signUp', {
             customer: customer
         }).then(function (results) {
-            Data.toast(results);
+
             if (results.status == "success") {
                 $location.path('dashboard');
             }

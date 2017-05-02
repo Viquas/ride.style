@@ -26,9 +26,9 @@
 
               </head>
 
-  <body ng-cloak="" >
+              <body ng-cloak="" >
 
-              		<div id="st-container" class="st-container">
+              		<div id="st-container" class="st-container" ng-controller="loginCtrl">
 
 
               			<nav class="st-menu st-effect-12" id="menu-12">
@@ -58,20 +58,24 @@
                       <a href="#/" class="logo-link">
                         <img src="img/logo.png" class="logo-img" > </img>
                       </a>
-
+                      <span ng-show="!login">
                         <button type="button" class="user" >
-                          <i class="flaticon flaticon-user-3"></i>
+                          <i class="flaticon flaticon-user-3 signup-img"></i>
                             <p class="user-text"> Sign up</p>
                         </button>
+                      </span>
+                      <span ng-show="login">
+                        <button type="button" class="user" >
+                          <i class="flaticon flaticon-user-3 signup-img"></i>
+                            <p class="user-text"> {{username}}</p>
+                        </button>
+                      </span>
                     </div>
 
                       </div>
 
                           <div data-ng-view="" id="ng-view" class="slide-animation">
                           </div>
-
-
-
               			</div><!-- /st-pusher -->
               		</div><!-- /st-container -->
 
@@ -102,6 +106,7 @@
   <script src="app/data.js"></script>
   <script src="app/directives.js"></script>
   <script src="app/homeCtrl.js"></script>
+  <script src="app/loginCtrl.js"></script>
   <script src="app/addCarCtrl.js"></script>
   <script src="app/addCarSpecsCtrl.js"></script>
   <script src="app/fileupload/ng-file-upload-shim.js"></script>
@@ -112,5 +117,6 @@
   <script src="app/authCtrl.js"></script>
   <script src="app/test.js"></script>
   <script src="app/carCtrl.js"></script>
+  <script src="app/carDetailCtrl.js"></script>
   <script src="app/book.js"></script>
 </html>

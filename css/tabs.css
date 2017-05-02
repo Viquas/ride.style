@@ -306,13 +306,22 @@ select.time-select-small{
 	background: white;
 }
 
-
-
-input.text-input{
+select.make-select{
+	border-radius: 0;
 	border: 1px solid #c9a657;
-
-	padding:10px;
+	/*padding:10px;*/
+	font-family: 'Roboto','Sans-serif';
+	font-size: 16px;
+	font-weight: 300;
 	width: 100%;
+	-webkit-appearance: none;
+	background: white;
+
+}
+
+select.make-select:focus{
+ border: 1px solid #c9a657;
+
 }
 input::placeholder {
   color: #b5b5b5;

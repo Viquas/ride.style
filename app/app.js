@@ -63,7 +63,7 @@ app.config(['$routeProvider','$locationProvider',
             .when('/car_detail', {
                 title: 'Car Detail',
                 templateUrl: 'partials/car_detail.html',
-                controller: 'carCtrl',
+                controller: 'carDetailCtrl',
 
             })
             .when('/addCar', {
@@ -122,32 +122,44 @@ app.config(['$routeProvider','$locationProvider',
         tomorrow.setDate(today + 1);
         datesTime.startDate = today;
         datesTime.endDate = today;
-        datesTime.startTime = '';
-        datesTime.endTime = '';
+        datesTime.startTime = '00:00:00';
+        datesTime.endTime = '00:00:00';
         datesTime.set = false;
+      })
+
+      .service("make",function SetMake(){
+        var make = this;
+        make.id = 0;
+        make.name = '';
+        make.set = false;
+      })
+
+      .service("car",function SetCar(){
+        var car = this;
+        car.id = 0;
       })
 
     .run(function ($rootScope, $location, Data) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            // $rootScope.authenticated = false;
-            // Data.get('session').then(function (results) {
-            //     if (results.uid) {
-            //
-            //         $rootScope.authenticated = true;
-            //         $rootScope.uid = results.uid;
-            //         $rootScope.name = results.name;
-            //         $rootScope.email = results.email;
-            //         // $location.path("/dashboard");
-            //           console.log("hereNow");
-            //     }
-            //      else {
-            //         var nextUrl = next.$$route.originalPath;
-            //         if (nextUrl == '/signup' || nextUrl == '/login') {
-            //
-            //         } else {
-            //             $location.path("/login");
-            //         }
-            //     }
-            // });
+            $rootScope.authenticated = false;
+            Data.get('session').then(function (results) {
+                if (results.uid) {
+
+                    $rootScope.authenticated = true;
+                    $rootScope.uid = results.uid;
+                    $rootScope.name = results.name;
+                    $rootScope.email = results.email;
+                    // $location.path("/dashboard");
+                    
+                }
+                 else {
+                    // var nextUrl = next.$$route.originalPath;
+                    // if (nextUrl == '/signup' || nextUrl == '/login') {
+                    //
+                    // } else {
+                    //     $location.path("/login");
+                    // }
+                }
+            });
         });
     });

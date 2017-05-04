@@ -150,7 +150,7 @@ app.config(['$routeProvider','$locationProvider',
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
                     // $location.path("/dashboard");
-                    
+
                 }
                  else {
                     // var nextUrl = next.$$route.originalPath;

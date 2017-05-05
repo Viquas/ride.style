@@ -8,15 +8,14 @@ app.controller('carDetailCtrl', function ($scope, $rootScope, $routeParams, $loc
   $scope.endDateM = datesData.endDate;
   $scope.startTime = datesData.startTime;
   $scope.endTime = datesData.endTime;
-  console.log(datesData);
-  console.log(carData);
+
 
 
   if(car.id==0){
     $location.path("/");
   }
   Data.get('getCar?car_id='+car.id).then(function (results) {
-    console.log(results)
+
     if(results.status == 200){
         $scope.car = results.value;
     }else{
@@ -24,7 +23,9 @@ app.controller('carDetailCtrl', function ($scope, $rootScope, $routeParams, $loc
     }
   });
 
-
+  $scope.rent = function(){
+    $location.path("/book");
+  }
 
 
 

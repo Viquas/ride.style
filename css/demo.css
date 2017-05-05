@@ -642,7 +642,29 @@ textarea.text-textarea-small{
 	font-size: 15px;
 }
 
+textarea.text-textarea-small-left{
+	border: 1px solid #c9a657;
+	padding:10px;
+	font-size: 13px;
+	border-radius: 0px;
+	border-left: 0px;
+	font-size: 15px;
+}
+textarea.text-textarea-small-left:focus{
+	 border: 1px solid #c9a657;
+	outline: none;
+	border-left: 0px;
 
+	 -webkit-box-shadow: none;
+	 -moz-box-shadow: none;
+	 box-shadow: none;
+}
+
+textarea.text-textarea-small-left::placeholder {
+    color: #beb7b5;
+		padding-top:10px;
+		padding-left: 0px;
+}
 .golden{
 	color: #c9a657;
 }

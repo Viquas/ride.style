@@ -102,6 +102,9 @@
   <script src="js/cbpFWTabs.js"></script>
   <script src="js/progressButton.js"></script>
 
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfPfxy4MfDhcQhsOj2jEvmkXVHGezzR_U&callback=initMap">
+  </script>
   <script src="app/app.js"></script>
   <script src="app/data.js"></script>
   <script src="app/directives.js"></script>

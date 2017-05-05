@@ -34,12 +34,15 @@
         </div>
         <!--Start show this if chauffeur is  choosen -->
         <div  class="" ng-show="chauffeur_selected">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
-              <input class="form-input text-input-small" type="text" placeholder="Enter pickup location">
-            </div>
-          </div>
+          <div class="form-group ">
+        <div class="col-md-12 input-group">
+          <span class="input-group-addon checkbox-group-addon-small">
+            <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector">
+          </span>
+            <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Enter pickup location" ng-model="pickup_location"></textarea>
+        </div>
+      </div>
+
 
         </div>
         <!--End show this if chauffeur is  choosen -->
@@ -68,20 +71,21 @@
 
           <!--Start show this if user chooses to deliver  the car -->
           <div class="" ng-show="deliver_the_Car == 0">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
-              <input class="form-input text-input-small" type="text" placeholder="Delivery Address">
-            </div>
-          </div>
 
-          <div class="form-group">
-            <div class="input-group" style="width: 100%">
-              <span class="input-group-addon checkbox-group-addon-small">
-                <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector"> </span>
-              <input class="form-input text-input-small" type="text" placeholder="Collection address same as delivery">
-            </div>
-          </div>
+          <div class="form-group ">
+        <div class="col-md-12 input-group">
+            <span class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i></span>
+            <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Delivery Address" ng-model="delivery_address"></textarea>
+        </div>
+    </div>
+    <div class="form-group ">
+  <div class="col-md-12 input-group">
+    <span class="input-group-addon checkbox-group-addon-small">
+      <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector">
+    </span>
+      <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Collection address same as delivery address" ng-model="collection_address"></textarea>
+  </div>
+</div>
 
 
 
@@ -90,7 +94,7 @@
         <!--Start show this if user chooses to pick up the car -->
         <div class="" ng-show="deliver_the_Car == 1">
           <div id="carLocationMap"></div>
-   <script>
+   <!-- <script>
      function initMap() {
        var uluru = {lat: 51.528308, lng: -0.3818017};
        var map = new google.maps.Map(document.getElementById('carLocationMap'), {
@@ -102,17 +106,15 @@
          map: map
        });
      }
-   </script>
-   <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfPfxy4MfDhcQhsOj2jEvmkXVHGezzR_U&callback=initMap">
-   </script>
+   </script> -->
+   
         </div>
         <!--End show this if user chooses to pick up the car -->
         </div>
         <!--End show this if chauffeur is choosen -->
 
         <div class="form-group">
-          <textarea class="form-control text-textarea-small" rows="3" placeholder="Additional request"></textarea>
+          <textarea class="form-control text-textarea-small" rows="3" placeholder="Additional request" ng-model="additional_request"></textarea>
         </div>
         <div class="form-group">
           <p class="text-center">

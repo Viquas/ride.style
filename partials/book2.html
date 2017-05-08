@@ -43,33 +43,101 @@
   </div>
     <div class="row">
       <div class="col-lg-6 col-md-8 col-sm-12 col-lg-offset-3" >
-
-        <div class="col-sm-5 ">
+          <div class="row">
+        <div class="col-sm-6 filters">
           <p class="filter-title"> Start Date </p>
-          <div class="input-group">
-            <div class="input-group-addon date-group-addon-small"><i class="flaticon flaticon-calendar-6"></i></div>
-          <input class="form-input date-input-small" type="date">  </input>
-          <div class="input-group-addon time-group-addon-small"><i class="flaticon flaticon-clock-1"></i></div>
-      <input class="form-input time-input-small" type="time"></input>
-          </div>
+          <div class="col-sm-6">
+
+            <div class="input-group">
+              <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
+            <!-- <input class="form-input date-input" type="date">  </input> -->
+            <input data-provide="datepicker" class=" date-input-small " id="startDate" onkeydown="return false"  ng-model="startDateM">
+            </div>
+              </div>
+                          <div class="col-sm-6">
+                      <div class="input-group">
+                        <div class="input-group-addon time-group-addon-small">
+                          <i class="flaticon flaticon-clock-1"></i></div>
+                    <select class="form-input time-select-small" ng-model="startTime">
+                      <option value="00:00:00">12 AM </option>
+                      <option value="01:00:00">1 AM </option>
+                      <option value="02:00:00">2 AM </option>
+                      <option value="03:00:00">3 AM </option>
+                      <option value="04:00:00">4 AM </option>
+                      <option value="05:00:00">5 AM </option>
+                      <option value="06:00:00">6 AM </option>
+                      <option value="07:00:00">7 AM </option>
+                      <option value="08:00:00">8 AM </option>
+                      <option value="09:00:00">9 AM </option>
+                      <option value="10:00:00">10 AM </option>
+                      <option value="11:00:00">11 AM </option>
+                      <option value="12:00:00">12 PM </option>
+                      <option value="13:00:00">1 PM </option>
+                      <option value="14:00:00">2 PM </option>
+                      <option value="15:00:00">3 PM </option>
+                      <option value="16:00:00">4 PM </option>
+                      <option value="17:00:00">5 PM </option>
+                      <option value="18:00:00">6 AM </option>
+                      <option value="19:00:00">7 PM </option>
+                      <option value="20:00:00">8 PM </option>
+                      <option value="21:00:00">9 PM </option>
+                      <option value="22:00:00">10 PM </option>
+                      <option value="23:00:00">11 PM </option>
+
+                    </select>
+                    </div>
+                    </div>
         </div>
 
-        <div class="col-sm-2">
+        <!-- <div class="col-sm-2">
           <img src="img/arrow.png" class="img-responsive arrow-img"></img>
-        </div>
-        <div class="col-sm-5 filters">
+        </div> -->
+        <div class="col-sm-6 filters">
           <p class="filter-title"> End Date </p>
-          <div class="input-group">
-            <div class="input-group-addon date-group-addon-small"><i class="flaticon flaticon-calendar-6"></i></div>
-          <input class="form-input date-input-small" type="date">  </input>
-          <div class="input-group-addon time-group-addon-small"><i class="flaticon flaticon-clock-1"></i></div>
-      <input class="form-input time-input-small" type="time"></input>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
+            <!-- <input class="form-input date-input" type="date">  </input> -->
+            <input data-provide="datepicker" class=" date-input-small" id="endDate" onkeydown="return false"  ng-model="startDateM">
+            </div>
+              </div>
+                          <div class="col-sm-6">
+                      <div class="input-group">
+                        <div class="input-group-addon time-group-addon-small">
+                          <i class="flaticon flaticon-clock-1"></i></div>
+                    <select class="form-input time-select-small" ng-model="endTime">
+                      <option value="00:00:00">12 AM </option>
+                      <option value="01:00:00">1 AM </option>
+                      <option value="02:00:00">2 AM </option>
+                      <option value="03:00:00">3 AM </option>
+                      <option value="04:00:00">4 AM </option>
+                      <option value="05:00:00">5 AM </option>
+                      <option value="06:00:00">6 AM </option>
+                      <option value="07:00:00">7 AM </option>
+                      <option value="08:00:00">8 AM </option>
+                      <option value="09:00:00">9 AM </option>
+                      <option value="10:00:00">10 AM </option>
+                      <option value="11:00:00">11 AM </option>
+                      <option value="12:00:00">12 PM </option>
+                      <option value="13:00:00">1 PM </option>
+                      <option value="14:00:00">2 PM </option>
+                      <option value="15:00:00">3 PM </option>
+                      <option value="16:00:00">4 PM </option>
+                      <option value="17:00:00">5 PM </option>
+                      <option value="18:00:00">6 AM </option>
+                      <option value="19:00:00">7 PM </option>
+                      <option value="20:00:00">8 PM </option>
+                      <option value="21:00:00">9 PM </option>
+                      <option value="22:00:00">10 PM </option>
+                      <option value="23:00:00">11 PM </option>
 
-          </div>
+                    </select>
+                    </div>
+                    </div>
           <br/>
           <br/>
         </div>
-
+      </div>
         <div class="form-group">
           <div class="col-sm-12">
           <input type="checkbox" id="checkbox-1-1" class="ui-checkbox" ng-model="chauffeur_selected" />
@@ -81,39 +149,37 @@
         </div>
         <!--Start show this if chauffeur is  choosen -->
         <div  class="" ng-show="chauffeur_selected">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
-              <input class="form-input text-input-small" type="text" placeholder="Enter pickup location">
-            </div>
-          </div>
+          <div class="form-group ">
+        <div class="col-md-12 input-group">
+        <span class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i></span>
+            <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Enter pickup location" ng-model="pickup_location" ng-focus="clear();"></textarea>
+        </div>
+      </div>
 
         </div>
         <!--End show this if chauffeur is  choosen -->
 
 
-          <!--Start show this if chauffeur is not choosen -->
-        <div  class=""  ng-show="!chauffeur_selected">
-          <div class="form-group">
-            <div class="col-lg-6">
-              <div class="reg">
-                <label><input type="radio" name="optradio" value="0" ng-model="deliver_the_Car">
-                  <span></span>
-                </label>
-                <abbr> Deliver the car to me </abbr>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="reg">
-                <label><input type="radio" name="optradio" value="1" ng-model="deliver_the_Car">
-                  <span></span>
-                </label>
-                <abbr> I'll pick up the car </abbr>
-              </div>
+        <!--Start show this if chauffeur is not choosen -->
+      <div  class=""  ng-show="!chauffeur_selected">
+        <div class="form-group">
+          <div class="col-lg-6">
+            <div class="reg">
+              <label><input type="radio" name="optradio" value="0" ng-model="deliver_the_Car">
+                <span></span>
+              </label>
+              <abbr> Deliver the car to me </abbr>
             </div>
           </div>
-
-
+          <div class="col-lg-6">
+            <div class="reg">
+              <label><input type="radio" name="optradio" value="1" ng-model="deliver_the_Car">
+                <span></span>
+              </label>
+              <abbr> I'll pick up the car </abbr>
+            </div>
+          </div>
+        </div>
 
 
           <!--Start show this if user chooses to deliver  the car -->
@@ -121,7 +187,7 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
-              <input class="form-input text-input-small" type="text" placeholder="Delivery Address">
+              <input class="form-input text-input-small" type="text" placeholder="Delivery Address" ng-model="collection_selector">
             </div>
           </div>
 
@@ -140,22 +206,8 @@
         <!--Start show this if user chooses to pick up the car -->
         <div class="" ng-show="deliver_the_Car == 1">
           <div id="carLocationMap"></div>
-   <script>
-     function initMap() {
-       var uluru = {lat: 51.528308, lng: -0.3818017};
-       var map = new google.maps.Map(document.getElementById('carLocationMap'), {
-         zoom: 14,
-         center: uluru
-       });
-       var marker = new google.maps.Marker({
-         position: uluru,
-         map: map
-       });
-     }
-   </script>
-   <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfPfxy4MfDhcQhsOj2jEvmkXVHGezzR_U&callback=initMap">
-   </script>
+
+
         </div>
         <!--End show this if user chooses to pick up the car -->
         </div>
@@ -209,7 +261,7 @@
 
         <div class="form-group">
           <p class="text-center">
-            <a href="work.php" class=" btn golden-button btn-lg btn-center" role="button" >
+            <a class="btn golden-button-black btn-lg btn-center" role="button" >
               Proceed to payment
             </a>
           </p>

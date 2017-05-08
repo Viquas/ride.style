@@ -36,13 +36,10 @@
         <div  class="" ng-show="chauffeur_selected">
           <div class="form-group ">
         <div class="col-md-12 input-group">
-          <span class="input-group-addon checkbox-group-addon-small">
-            <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector">
-          </span>
-            <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Enter pickup location" ng-model="pickup_location"></textarea>
+        <span class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i></span>
+            <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Enter pickup location" ng-model="pickup_location" ng-focus="clear();"></textarea>
         </div>
       </div>
-
 
         </div>
         <!--End show this if chauffeur is  choosen -->
@@ -75,15 +72,15 @@
           <div class="form-group ">
         <div class="col-md-12 input-group">
             <span class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i></span>
-            <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Delivery Address" ng-model="delivery_address"></textarea>
+            <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Delivery Address" ng-model="delivery_address" ng-focus="clear();"></textarea>
         </div>
     </div>
     <div class="form-group ">
   <div class="col-md-12 input-group">
     <span class="input-group-addon checkbox-group-addon-small">
-      <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector">
+      <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector" ng-change="col_change();" >
     </span>
-      <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Collection address same as delivery address" ng-model="collection_address"></textarea>
+      <textarea rows="2" size="30" value="" class="form-control text-textarea-small-left" placeholder="Collection address same as delivery address" ng-model="collection_address" ng-disabled="disable_address" ng-focus="clear();"></textarea>
   </div>
 </div>
 
@@ -94,20 +91,8 @@
         <!--Start show this if user chooses to pick up the car -->
         <div class="" ng-show="deliver_the_Car == 1">
           <div id="carLocationMap"></div>
-   <!-- <script>
-     function initMap() {
-       var uluru = {lat: 51.528308, lng: -0.3818017};
-       var map = new google.maps.Map(document.getElementById('carLocationMap'), {
-         zoom: 14,
-         center: uluru
-       });
-       var marker = new google.maps.Marker({
-         position: uluru,
-         map: map
-       });
-     }
-   </script> -->
-   
+
+
         </div>
         <!--End show this if user chooses to pick up the car -->
         </div>
@@ -116,9 +101,12 @@
         <div class="form-group">
           <textarea class="form-control text-textarea-small" rows="3" placeholder="Additional request" ng-model="additional_request"></textarea>
         </div>
+        <div class="alert alert-warning golden"  ng-show="showMessage" ng-hide="!showMessage">
+        {{message}}
+  </div>
         <div class="form-group">
           <p class="text-center">
-            <a href="work.php" class=" btn golden-button btn-lg btn-center" role="button" >
+            <a href="" class=" btn golden-button btn-lg btn-center" role="button" ng-click="next_personal();">
               Proceed
             </a>
           </p>

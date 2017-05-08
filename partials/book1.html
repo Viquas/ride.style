@@ -31,14 +31,14 @@
         <span class="slant">Already a member? </span><span class="link"> Log in</span>
       </p>
     </div>
-
+<form name="signup">
     <div class="form-group row">
 <div class="col-lg-6 col-lg-offset-3">
   <div class="col-sm-6">
-    <input class="form-control form-text" placeholder="First Name" type="text">
+    <input class="form-control form-text"  placeholder="First Name" ng-model="signup.first_name" type="text" required>
   </div>
   <div class="col-sm-6">
-    <input class="form-control form-text" placeholder="Last Name" type="text">
+    <input class="form-control form-text" placeholder="Last Name" ng-model="signup.last_name" type="text" required>
   </div>
 
 
@@ -48,12 +48,11 @@
 <div class="form-group row">
 <div class="col-lg-6 col-lg-offset-3">
   <div class="col-sm-6">
-  <input class="form-control form-text" placeholder="Date of Birth" type="date">
+  <input class="form-control form-text" placeholder="Date of Birth" ng-model="signup.dob" type="date" required>
   </div>
 <div class="col-sm-6">
-<input class="form-control form-text" placeholder="Nationality" type="text">
+<input class="form-control form-text" placeholder="Nationality" ng-model="signup.nationality" type="text" required>
 </div>
-
 </div>
 
       </div>
@@ -61,18 +60,29 @@
       <div class="form-group row">
       <div class="col-lg-6 col-lg-offset-3">
         <div class="col-sm-6">
-        <input class="form-control form-text" placeholder="Email Id" type="email">
+        <input class="form-control form-text" placeholder="Email Id" type="text" ng-model="signup.email" ng-pattern="emailFormat"  ng-blur="changes()" required>
         </div>
       <div class="col-sm-6">
-      <input class="form-control form-text" placeholder="Mobile Number" type="number">
+      <input class="form-control form-text" placeholder="Mobile Number" ng-model="signup.mobile" type="number" required>
       </div>
       </div>
             </div>
 
             <div class="form-group row">
+            <div class="col-lg-6 col-lg-offset-3">
+              <div class="col-sm-6">
+              <input class="form-control form-text" placeholder="Password" type="password" ng-model="signup.password"   required>
+              </div>
+            <div class="col-sm-6">
+            <input class="form-control form-text" placeholder="Confirm password" ng-model="signup.confirm_password" type="password" required>
+            </div>
+            </div>
+                  </div>
+
+            <div class="form-group row">
         <div class="col-lg-6 col-lg-offset-3">
           <div class="col-sm-12">
-            <input class="form-control form-text" placeholder="Address line 1" type="text">
+            <input class="form-control form-text" ng-model="signup.address_line1" placeholder="Address line 1" type="text" required>
           </div>
 
         </div>
@@ -81,7 +91,7 @@
     <div class="col-lg-6 col-lg-offset-3">
 
       <div class="col-sm-12">
-        <input class="form-control form-text" placeholder="Address line 2" type="text">
+        <input class="form-control form-text" ng-model="signup.address_line2" placeholder="Address line 2" type="text" required>
       </div>
     </div>
     </div>
@@ -89,35 +99,41 @@
         <div class="form-group row">
     <div class="col-lg-6 col-lg-offset-3">
       <div class="col-sm-4">
-        <input class="form-control form-text" placeholder="Town/city" type="text">
+        <input class="form-control form-text" placeholder="Town/city" ng-model="signup.city" type="text" required>
       </div>
       <div class="col-sm-4">
-        <input class="form-control form-text" placeholder="County" type="text">
+        <input class="form-control form-text" placeholder="County" ng-model="signup.county" type="text" required>
       </div>
       <div class="col-sm-4">
-        <input class="form-control form-text" placeholder="Postal Code" type="number">
+        <input class="form-control form-text" placeholder="Postal Code" ng-model="signup.postal_code" type="text" required>
       </div>
     </div>
     </div>
     <div class="row">
 <div class="col-lg-6 col-lg-offset-3">
   <div class="col-sm-6">
-    <div class="upload-div">
+
+    <div class="upload-div" ngf-select="uploadDrivingFiles($files)" accept="image/*"  >
+
       <img class="upload-icon" src="img/plus.png"></img>
     </div>
-      <p class="text-center priceRange"> Upload Driving License </p>
+      <p class="text-center priceRange"> {{driving_image_name}} </p>
   </div>
   <div class="col-sm-6">
-    <div class="upload-div">
-      <img class="upload-icon" src="img/plus.png"></img>
+    <div class="upload-div" ngf-select="uploadAddressFiles($files)" accept="image/*" >
+
+      <img class="upload-icon" src="img/plus.png" ></img>
     </div>
-    <p class="text-center priceRange"> Upload Address Proof </p>
+    <p class="text-center priceRange"> {{address_image_name}}</p>
     </div>
 
     <div class="col-sm-12">
 
+      <div class="alert alert-warning golden"  ng-show="showMessage" ng-hide="!showMessage">
+      {{message}}
+</div>
       <p class="text-center">
-        <a href="work.php" class=" btn golden-button-black btn-lg btn-center" role="button" >
+        <a class=" btn golden-button-black btn-lg btn-center" role="button" ng-click="signUp(signup)" data-ng-disabled="signup.$invalid">
           Create & Proceed
         </a>
 
@@ -125,7 +141,7 @@
     </div>
   </div>
 </div>
-
+</form>
 
 </div>
 

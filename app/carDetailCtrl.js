@@ -14,6 +14,7 @@ app.controller('carDetailCtrl', function ($scope, $rootScope, $routeParams, $loc
   if(car.id==0){
     $location.path("/");
   }
+
   Data.get('getCar?car_id='+car.id).then(function (results) {
 
     if(results.status == 200){

@@ -153,9 +153,10 @@ margin-left: 50px;
 
 }
 .user-text{
+	top:0px;
 	font-size:15px;
 	display: inline;
-	vertical-align: middle;
+
 }
 .logo-text{
 	font-size:18px;
@@ -1131,7 +1132,9 @@ bottom: 3px;
 	font-weight: 300;
 	font-style: italic;
 }
-
+.slant:hover{
+	color: #c9a657;
+}
 .link{
 	color: #c9a657;
 	font-family: 'Roboto','Sans-serif';
@@ -1156,11 +1159,17 @@ border-radius: 40px;
 border: 2px solid #c9a657;
 padding: 23px 0px 0px 23px;
 font-size: 20px;
+cursor: pointer;
 }
-
+.golden{
+	 background-color: #fcf8e3;
+    border-color: #cca95e;
+    color: #8a6d3b;
+	}
 .upload-icon{
 	width: 30px;
 	height: 30px;
+	cursor: pointer;
 }
 .trip-logo{
 width:50px;

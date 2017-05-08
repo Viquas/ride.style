@@ -16,12 +16,13 @@ $app->post('/login', function() use ($app) {
     $db = new DbHandler();
     $password = $r->customer->password;
     $email = $r->customer->email;
-    $user = $db->getOneRecord("select uid,name,password,email,created from customers_auth where phone='$email' or email='$email'");
+    $user = $db->getOneRecord("select uid,first_name,last_name,password,email,created from customers_auth where phone='$email' or email='$email'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
-        $response['status'] = "success";
+        $response['status'] = 200;
         $response['message'] = 'Logged in successfully.';
-        $response['name'] = $user['name'];
+        $response['first_name'] = $user['first_name'];
+        $response['last_name'] = $user['last_name'];
         $response['uid'] = $user['uid'];
         $response['email'] = $user['email'];
         $response['createdAt'] = $user['created'];
@@ -30,13 +31,13 @@ $app->post('/login', function() use ($app) {
         }
         $_SESSION['uid'] = $user['uid'];
         $_SESSION['email'] = $email;
-        $_SESSION['name'] = $user['name'];
+        $_SESSION['name'] = $user['first_name'];
         } else {
-            $response['status'] = "error";
+            $response['status'] = "201";
             $response['message'] = 'Login failed. Incorrect credentials';
         }
     }else {
-            $response['status'] = "error";
+            $response['status'] = "201";
             $response['message'] = 'No such user is registered';
         }
     echoResponse(200, $response);
@@ -44,32 +45,48 @@ $app->post('/login', function() use ($app) {
 $app->post('/signUp', function() use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
-    verifyRequiredParams(array('email', 'name', 'password'),$r->customer);
+    verifyRequiredParams(array('email', 'first_name', 'password'),$r->customer);
     require_once 'passwordHash.php';
     $db = new DbHandler();
-    $phone = $r->customer->phone;
-    $name = $r->customer->name;
+
+    $phone = $r->customer->mobile;
+    $first_name = $r->customer->first_name;
+    $last_name = $r->customer->last_name;
     $email = $r->customer->email;
-    $address = $r->customer->address;
+    $address_line1 = $r->customer->address_line1;
+    $address_line2 = $r->customer->address_line2;
+    $dob = $r->customer->dob;
     $password = $r->customer->password;
-    $isUserExists = $db->getOneRecord("select 1 from customers_auth where phone='$phone' or email='$email'");
+     $isUserExists = $db->getOneRecord("select 1 from customers_auth where phone='$phone' or email='$email'");
+    //  print_r($r);
     if(!$isUserExists){
+
         $r->customer->password = passwordHash::hash($password);
         $tabble_name = "customers_auth";
-        $column_names = array('phone', 'name', 'email', 'password');
+        $column_names = array('phone', 'first_name', 'last_name','email', 'password','dob');
+
         $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
         if ($result != NULL) {
-            $response["status"] = "success";
+            $response["status"] = 200;
             $response["message"] = "User account created successfully";
             $response["uid"] = $result;
-            if (!isset($_SESSION)) {
-                session_start();
+
+            if(add_address($r->customer,$result)){
+              if (!isset($_SESSION)) {
+                  session_start();
+              }
+              $_SESSION['uid'] = $response["uid"];
+              $_SESSION['phone'] = $phone;
+              $_SESSION['name'] = $first_name;
+              $_SESSION['email'] = $email;
+              echoResponse(200, $response);
+            }else{
+              $response["status"] = "fail";
+              $response["message"] = "User account cannot be created";
+
+              echoResponse(200, $response);
             }
-            $_SESSION['uid'] = $response["uid"];
-            $_SESSION['phone'] = $phone;
-            $_SESSION['name'] = $name;
-            $_SESSION['email'] = $email;
-            echoResponse(200, $response);
+
         } else {
             $response["status"] = "error";
             $response["message"] = "Failed to create customer. Please try again";
@@ -81,6 +98,29 @@ $app->post('/signUp', function() use ($app) {
         echoResponse(201, $response);
     }
 });
+
+function add_address($customer,$id){
+  $return_value = 0;
+  $r = new stdClass();
+  $r->{'user_id'} = $id;
+  $r->{'address_line_1'} = $customer->address_line1;
+  $r->{'address_line_2'} = $customer->address_line2;
+  $r->{'city'} = $customer->city;
+  $r->{'county'} = $customer->county;
+  $r->{'postcode'} = $customer->postal_code;
+  $r->{'type_id'} = 1;
+  $table_name = "address";
+  $column_names = array('address_line_1', 'address_line_2', 'city','county', 'postcode','type_id','user_id');
+  $db = new DbHandler();
+  $result = $db->insertIntoTable($r, $column_names, $table_name);
+  if ($result != NULL) {
+      $return_value = 1;
+  }else{
+      $return_value = 0;
+  }
+  return $return_value;
+}
+
 $app->get('/logout', function() {
     $db = new DbHandler();
     $session = $db->destroySession();
@@ -244,18 +284,18 @@ function addUserImage($image_name,$user_id){
   $r->{'uid'} = $user_id;
   $r->{'image'} = $image_name;
       $column_names = array('uid', 'image');
-      $query = "UPDATE customers_auth SET `image` = $image_name WHERE `uid` = $user_id";
-      $result = $db->updateTable($query);
+      $query = "UPDATE customers_auth SET `image` = '$image_name' WHERE `uid` = $user_id";
 
+      $result = $db->updateTable($query);
       if ($result != NULL) {
           $response["status"] = "success";
           $response["message"] = "Image updated successfully";
           $response["id"] = $result;
-          echoResponse(200, $response);
+          // echoResponse(200, $response);
       } else {
           $response["status"] = "error";
-          $response["message"] = "Failed to create car. Please try again";
-          echoResponse(201, $response);
+          $response["message"] = "Image updated successfully";
+          // echoResponse(201, $response);
       }
 }
 
@@ -320,7 +360,7 @@ $app->post('/postUserImage', function() use($app){
            $userfile_name = $files['name'][$i];
            $userfile_extn = substr($userfile_name, strrpos($userfile_name, '.')+1);
            if (move_uploaded_file($files['tmp_name'][$i], $upload_folder . $name.".".$userfile_extn) === true) {
-               $imgs[] = array('url' => '/uploads/' . $name, 'name' => $files['name'][$i]);
+               $imgs[] = array('url' => 'images/user/' . $name.".".$userfile_extn, 'name' => $files['name'][$i]);
                $send_image = $name.".".$userfile_extn;
                addUserImage($send_image,$_POST['user_id']);
            }
@@ -338,7 +378,7 @@ $app->post('/postUserImage', function() use($app){
    $plural = ($imageCount == 1) ? '' : 's';
 
    foreach($imgs as $img) {
-       printf('%s <img src="%s" width="50" height="50" /><br/>', $img['name'], $img['url']);
+       printf('<img src="%s" width="50" height="50" /><br/>', $img['url']);
    }
 });
 
@@ -358,11 +398,11 @@ $app->post('/postDrivingLicense', function() use($app){
            $upload_folder = '../../images/driving_license/';
            $userfile_name = $files['name'][$i];
            $userfile_extn = substr($userfile_name, strrpos($userfile_name, '.')+1);
-          // echo('hi');
            if (move_uploaded_file($files['tmp_name'][$i], $upload_folder . $name.".".$userfile_extn) === true) {
-               $imgs[] = array('url' => '/uploads/' . $name, 'name' => $files['name'][$i]);
+               $imgs[] = array('url' => 'images/driving_license/' . $name.".".$userfile_extn, 'name' => $files['name'][$i]);
                $send_image = $name.".".$userfile_extn;
-               addDrivingLicenseImage($send_image,$_POST['user_id']);
+                 $table_name = "driving_license";
+                addImagesToTable($send_image,$_POST['user_id'],$table_name);
            }
 
        }
@@ -374,19 +414,54 @@ $app->post('/postDrivingLicense', function() use($app){
       echo 'No files uploaded!!  <p><a href="/">Try again</a>';
       return;
    }
-
    $plural = ($imageCount == 1) ? '' : 's';
-
    foreach($imgs as $img) {
-       printf('%s <img src="%s" width="50" height="50" /><br/>', $img['name'], $img['url']);
+       printf('%s', $img['url']);
    }
 });
 
-function addDrivingLicenseImage($image_name,$user_id){
+$app->post('/postAddressProof', function() use($app){
+  if (!isset($_FILES['files'])) {
+       echo "No files uploaded!!";
+       return;
+   }
+   $imgs = array();
+
+   $files = $_FILES['files'];
+   $cnt = count($files['name']);
+
+   for($i = 0 ; $i < $cnt ; $i++) {
+       if ($files['error'][$i] === 0) {
+           $name = uniqid('img-'.date('Ymd').'-');
+           $upload_folder = '../../images/address_proof/';
+           $userfile_name = $files['name'][$i];
+           $userfile_extn = substr($userfile_name, strrpos($userfile_name, '.')+1);
+           if (move_uploaded_file($files['tmp_name'][$i], $upload_folder . $name.".".$userfile_extn) === true) {
+               $imgs[] = array('url' => 'images/address_proof/' . $name.".".$userfile_extn, 'name' => $files['name'][$i]);
+               $send_image = $name.".".$userfile_extn;
+               $table_name = 'address_proof';
+                addImagesToTable($send_image,$_POST['user_id'],$table_name);
+           }
+
+       }
+   }
+
+   $imageCount = count($imgs);
+
+   if ($imageCount == 0) {
+      echo 'No files uploaded!!  <p><a href="/">Try again</a>';
+      return;
+   }
+   $plural = ($imageCount == 1) ? '' : 's';
+   foreach($imgs as $img) {
+       printf('%s', $img['url']);
+   }
+});
+
+function addImagesToTable($image_name,$user_id,$table_name){
   $db = new DbHandler();
-  $table_name = "driving_license";
   $r = new stdClass();
-  $r->{'user_id'} = $car_id;
+  $r->{'user_id'} = $user_id;
   $r->{'image'} = $image_name;
       $column_names = array('user_id', 'image');
       $result = $db->insertIntoTable($r, $column_names, $table_name);
@@ -394,11 +469,11 @@ function addDrivingLicenseImage($image_name,$user_id){
           $response["status"] = "success";
           $response["message"] = "Driving License added successfully";
           $response["id"] = $result;
-          echoResponse(200, $response);
+          // echoResponse(200, $response);
       } else {
           $response["status"] = "error";
           $response["message"] = "Failed to add driving license. Please try again";
-          echoResponse(201, $response);
+          // echoResponse(201, $response);
       }
 }
 function getCarImages($tableName,$car_id){
@@ -711,8 +786,8 @@ $app->get('/getUser', function() use ($app) {
 $app->get('/getCar', function() use ($app) {
     $carId = $app->request()->get('car_id');
     $db = new DbHandler();
-    $result = $db->getOneRecord("select u.id, u.name,m.name as make, s.name as category, u.model, u.information, u.year, t.type as transmission,
-    cs.daily_price, cs.weekly_price , cs.security_deposit  from cars u
+    $result = $db->getOneRecord("select u.id, u.name,  m.name as make, s.name as category, u.model, u.information, u.year, t.type as transmission,
+    cs.daily_price,cs.weekly_price , cs.security_deposit,cs.location_city,cs.address,cs.latitude,cs.longitude  from cars u
     inner join car_category s on u.car_category_id = s.id
     inner join car_model m on u.make_id = m.id
     inner join transmission t on u.transmission_id = t.id
@@ -734,6 +809,10 @@ $app->get('/getCar', function() use ($app) {
         $json_obj->{'daily_price'} = floatval($result['daily_price']);
         $json_obj->{'weekly_price'} = floatval($result['weekly_price']);
         $json_obj->{'security_deposit'} = floatval($result['security_deposit']);
+        $json_obj->{'city'} = $result['location_city'];
+        $json_obj->{'address'} = $result['address'];
+        $json_obj->{'latitude'} = $result['latitude'];
+        $json_obj->{'longitude'} = $result['longitude'];
         $images = getCarImages('car_images',$result['id']);
         $image_data = array();
         if(sizeof($images) > 0){

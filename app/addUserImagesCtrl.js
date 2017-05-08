@@ -1,7 +1,5 @@
 app.controller('addUserImagesCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Upload, $timeout, Data) {
 
-
-
   $scope.uploadUserFiles = function (files) {
     $scope.UserImage = files;
 
@@ -15,7 +13,7 @@ app.controller('addUserImagesCtrl', function ($scope, $rootScope, $routeParams, 
       // });
 
         Upload.upload({
-            url: 'http://localhost/treestack/ride/api/v1/postUserImage',
+            url: 'http://localhost/treestack/ride.style/api/v1/postUserImage',
             data: {
                 files: files,
                 user_id:parseInt($rootScope.uid)

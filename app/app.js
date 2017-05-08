@@ -13,11 +13,11 @@ app.config(['$routeProvider','$locationProvider',
                 templateUrl: 'partials/login.html',
                 controller: 'logoutCtrl'
             })
-            .when('/signup', {
-                title: 'Signup',
-                templateUrl: 'partials/signup.html',
-                controller: 'authCtrl'
-            })
+            // .when('/signup', {
+            //     title: 'Signup',
+            //     templateUrl: 'partials/signup.html',
+            //     controller: 'authCtrl'
+            // })
             .when('/dashboard', {
                 title: 'Dashboard',
                 templateUrl: 'partials/dashboard.html',
@@ -40,13 +40,13 @@ app.config(['$routeProvider','$locationProvider',
                 templateUrl: 'partials/book.html',
                 controller: 'bookCtrl',
             })
-            .when('/book1', {
-                title: 'Book Car',
+            .when('/signup', {
+                title: 'Sign up',
                 templateUrl: 'partials/book1.html',
                 controller: 'bookCtrl',
             })
-            .when('/book2', {
-                title: 'Book Car',
+            .when('/summary', {
+                title: 'Summary',
                 templateUrl: 'partials/book2.html',
                 controller: 'bookCtrl',
             })
@@ -81,7 +81,6 @@ app.config(['$routeProvider','$locationProvider',
                 title: 'Book Car',
                 templateUrl: 'partials/bookcar.html',
                 controller: 'bookCarCtrl'
-
             })
             .when('/addCarImages', {
               title: 'Add Car',
@@ -108,11 +107,8 @@ app.config(['$routeProvider','$locationProvider',
             .otherwise({
                 redirectTo: '/login'
             });
-
             //  $locationProvider.html5Mode(true);
   }])
-
-
 
 
       .service("dates",function SetDates(){
@@ -139,18 +135,27 @@ app.config(['$routeProvider','$locationProvider',
         car.id = 0;
       })
 
-    .run(function ($rootScope, $location, Data) {
+      .service("booking",function SetCar(){
+        var bdetails = this;
+        bdetails.chauffeur_selected = false;
+        bdetails.delivery_address = '';
+        bdetails.collection_address = '';
+        bdetails.pickup_location = '';
+        bdetails.collection_selector = '';
+        bdetails.additional_request = '';
+        bdetails.deliver_the_Car = 1;
+      })
+
+      .run(function ($rootScope, $location, Data) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = false;
             Data.get('session').then(function (results) {
                 if (results.uid) {
-
                     $rootScope.authenticated = true;
                     $rootScope.uid = results.uid;
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
                     // $location.path("/dashboard");
-
                 }
                  else {
                     // var nextUrl = next.$$route.originalPath;

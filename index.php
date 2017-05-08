@@ -32,14 +32,14 @@
 
 
               			<nav class="st-menu st-effect-12" id="menu-12">
+
               				<h2 class="icon white">
-                         Ride.Style</h2>
+                        <img class="logo-img" src="img/logo.png">
+                         Ride.Style
+                        </h2>
               				<ul>
-              					<li><a class="icon icon-user" href="#">Profile</a></li>
-              					<li><a class="icon icon-location" href="#">Location</a></li>
-              					<li><a class="icon icon-study" href="#">Study</a></li>
-              					<li><a class="icon icon-photo" href="#">Collections</a></li>
-              					<li><a class="icon icon-wallet" href="#">Credits</a></li>
+              					<li><a class="icon icon-user" href="">{{username}}</a></li>
+              					<li><a class="icon icon-lock" href="" ng-click="logout();">Log Out </a></li>
               				</ul>
               			</nav>
 
@@ -65,9 +65,10 @@
                         </button>
                       </span>
                       <span ng-show="login">
-                        <button type="button" class="user" >
-                          <i class="flaticon flaticon-user-3 signup-img"></i>
-                            <p class="user-text"> {{username}}</p>
+
+                        <button type="button" class="user" ng-click="logout();">
+                          <i class="flaticon flaticon-exit-2 signup-img"></i>
+                            <p class="user-text" > Log Out</p>
                         </button>
                       </span>
                     </div>
@@ -78,11 +79,6 @@
                           </div>
               			</div><!-- /st-pusher -->
               		</div><!-- /st-container -->
-
-
-
-
-
       </div>
     </body>
 
@@ -102,9 +98,8 @@
   <script src="js/cbpFWTabs.js"></script>
   <script src="js/progressButton.js"></script>
 
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfPfxy4MfDhcQhsOj2jEvmkXVHGezzR_U&callback=initMap">
-  </script>
+
+
   <script src="app/app.js"></script>
   <script src="app/data.js"></script>
   <script src="app/directives.js"></script>
@@ -122,4 +117,6 @@
   <script src="app/carCtrl.js"></script>
   <script src="app/carDetailCtrl.js"></script>
   <script src="app/book.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFGf8nyF-LEf7dul5zNZir-LpY4y8LhqA&callback=initMap"
+   async defer></script>
 </html>

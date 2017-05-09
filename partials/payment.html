@@ -1,0 +1,274 @@
+<section class="padded">
+  <div class="container" >
+  <form name="ccForm">
+    <div class="row">
+      <div class="col-sm-2" >
+        <p class="spec_text text-right "><img src="img/prev-page.png" class="prev-icon"> </img>&nbsp;Back
+        </p>
+      </div>
+      <div class="col-sm-8" >
+        <p class="text-center">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot active"></span>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <p class="text-center page-info">
+        Card Verification & Payment
+      </p>
+      <hr class="gold_line"></hr>
+      <br/>
+      <br/>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <p class="card-title "> Card 1 </p>
+
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <br/>
+        <div class="col-sm-7">
+          <input class="form-control form-text" placeholder="Name on card" type="text">
+        </div>
+     <div class="col-sm-3">
+         {{ccForm.ccNumber.$ccEagerType || ''}}
+       </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-6 col-lg-offset-3">
+
+        <div class="col-sm-7">
+          <input class="form-control form-text" placeholder="Credit card number" id="cardNumber" type="text" cc-number cc-eager-type name="ccNumber" ng-model="card.number">
+        </div>
+        <div class="col-sm-3 col-sm-offset-2">
+          <input class="form-control form-text" placeholder="CVV" type="text" id="cvc" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.cvc">
+        </div>
+
+
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-6 col-lg-offset-3">
+
+        <div class="col-sm-4">
+          <input class="form-control form-text" placeholder="Exp Month" type="text" cc-exp-month name="ccExpMonth" ng-model="card.expiration.month"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2">
+          <!-- <input class="form-control form-text" placeholder="Country" type="text"> -->
+        </div>
+        <div class="col-sm-4">
+          <input class="form-control form-text" placeholder="Exp Year eg:20" type="text" cc-exp-year name="ccExpYear" ng-model="card.expiration.year" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2">
+
+        </div>
+        <div class="col-sm-4">
+          <input class="form-control form-text" placeholder="Country" type="text" ng-model="card1.country">
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <hr></hr>
+
+      </div>
+    </div>
+
+</form>
+<form name="ccForm1">
+
+
+
+
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <p class="card-title "> Card 2 </p>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <br/>
+      <div class="col-sm-7">
+        <input class="form-control form-text" placeholder="Name on card" type="text">
+      </div>
+   <div class="col-sm-3">
+       {{ccForm1.ccNumber1.$ccEagerType || ''}}
+     </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-lg-6 col-lg-offset-3">
+
+      <div class="col-sm-7">
+        <input class="form-control form-text" placeholder="Credit card number" id="cardNumber" type="text" cc-number cc-eager-type name="ccNumber1" ng-model="card1.number">
+      </div>
+      <div class="col-sm-3 col-sm-offset-2">
+        <input class="form-control form-text" placeholder="CVV" type="text" id="cvc" cc-cvc cc-type="ccForm1.ccNumber.$ccType" name="ccCvc1" ng-model="card1.cvc">
+      </div>
+
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-lg-6 col-lg-offset-3">
+
+      <div class="col-sm-4">
+        <input class="form-control form-text" placeholder="Exp Month" type="text" cc-exp-month name="ccExpMonth" ng-model="card1.expiration.month" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2">
+        <!-- <input class="form-control form-text" placeholder="Country" type="text"> -->
+      </div>
+      <div class="col-sm-4">
+        <input class="form-control form-text" placeholder="Exp Year" type="number" cc-exp-year name="ccExpYear" ng-model="card1.expiration.year" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2">
+
+      </div>
+      <div class="col-sm-4">
+        <input class="form-control form-text" placeholder="Country" type="text" ng-model="card1.country">
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+</form>
+
+    <div class="form-group row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <hr></hr>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div class="col-sm-5">
+          <p class="spec_text"> Pay car rent through </p>
+        </div>
+        <div class="col-sm-7">
+
+          <select class="form-control filter" placeholder="Town/city">
+            <option value="car1"> Card 1 name </option>
+            <option value="car1"> Card 2 name </option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div class="col-sm-5">
+          <p class="spec_text">Pre-Authorize security deposit through
+          </p>
+        </div>
+        <div class="col-sm-7">
+
+          <select class="form-control filter" placeholder="Town/city">
+            <option value="car1"> Card 1 name </option>
+            <option value="car1"> Card 2 name </option>
+            <option value="car1"> Add new card </option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+
+        <div class="col-sm-12">
+          <div class="wrapper">
+            <section>
+              <p class="text-center">
+                <button class="progress-button" data-style="fill" data-horizontal>Rent this car</button>
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+       <!-- <table class="table">
+         <tr>
+           <th>Valid</th>
+           <th>Eager Type</th>
+           <th>Type</th>
+         </tr> -->
+         <!-- <tr>
+           <td>
+             {{ccForm1.ccNumber1.$valid | yesNo}}
+           </td>
+           <td>
+             {{ccForm1.ccNumber1.$ccEagerType || 'Unknown'}}
+           </td>
+           <td>
+             {{ccForm1.ccNumber1.$ccType || 'Unknown'}}
+           </td>
+         </tr>
+       </table> -->
+
+       <!-- <table class="table">
+         <tr>
+           <th>Valid</th>
+         </tr>
+         <tr>
+           <td>
+             {{ccForm.ccCvc.$valid | yesNo}}
+           </td>
+         </tr>
+       </table>
+
+       <table class="table">
+         <tr>
+           <th>Valid Month</th>
+           <th>Valid Year</th>
+           <th>Valid Pair</th>
+         </tr>
+         <tr>
+           <td>
+             {{ccForm.ccExpMonth.$valid | yesNo}}
+           </td>
+           <td>
+             {{ccForm.ccExpYear.$valid | yesNo}}
+           </td>
+           <td>
+             {{!ccForm.$error.ccExp | yesNo}}
+           </td>
+         </tr>
+       </table> -->
+
+
+  </div>
+
+</div>
+</div>
+</section>
+<script>
+[].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
+  new ProgressButton( bttn, {
+    callback : function( instance ) {
+      var progress = 0,
+      interval = setInterval( function() {
+        progress = Math.min( progress + Math.random() * 0.1, 1 );
+        instance._setProgress( progress );
+
+        if( progress === 1 ) {
+          instance._stop(1);
+          clearInterval( interval );
+        }
+      }, 200 );
+    }
+  } );
+} );
+</script>

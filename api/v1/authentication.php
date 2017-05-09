@@ -99,6 +99,42 @@ $app->post('/signUp', function() use ($app) {
     }
 });
 
+
+$app->post('/postCard', function() use ($app) {
+    $response = array();
+    $r = json_decode($app->request->getBody());
+    $db = new DbHandler();
+
+    $name = $r->card->name;
+    $number = $r->card->number;
+    $month = $r->card->month;
+    $year = $r->card->year;
+    $country = $r->card->country;
+    $user_id = $r->card->user_id;
+    $card_name = $r->card->card_name;
+
+     $isCardExists = $db->getOneRecord("select 1 from card where card_number='$number' or user_id='$user_id'");
+    //  print_r($r);
+    if(!$isCardExists){
+        $table_name = "card";
+        $column_names = array('name', 'card_number', 'month','year', 'country','card_name','user_id');
+        $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
+        if ($result != NULL) {
+            $response["status"] = 200;
+            $response["message"] = "Card added successfully";
+            $response["uid"] = $result;
+
+        } else {
+            $response["status"] = "error";
+            $response["message"] = "Failed to create card. Please try again";
+            echoResponse(201, $response);
+        }
+    }else{
+        $response["status"] = "error";
+        $response["message"] = "Card entered exists already!";
+        echoResponse(201, $response);
+    }
+});
 function add_address($customer,$id){
   $return_value = 0;
   $r = new stdClass();
@@ -152,7 +188,6 @@ $app->get('/getAllUser', function() use ($app) {
         } else {
             $status = 500;
             $message = 'No user found';
-
         }
 
     echoResponse(200, array("status"=>200,"message"=>$message,"value"=>$data));

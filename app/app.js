@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['rzModule','ngRoute', 'ngAnimate','ngFileUpload','ui.bootstrap']);
+var app = angular.module('myApp', ['credit-cards','rzModule','ngRoute', 'ngAnimate','ngFileUpload','ui.bootstrap']);
 
 app.config(['$routeProvider','$locationProvider',
   function ($routeProvider,$locationProvider) {
@@ -42,17 +42,17 @@ app.config(['$routeProvider','$locationProvider',
             })
             .when('/signup', {
                 title: 'Sign up',
-                templateUrl: 'partials/book1.html',
+                templateUrl: 'partials/personal.html',
                 controller: 'bookCtrl',
             })
             .when('/summary', {
                 title: 'Summary',
-                templateUrl: 'partials/book2.html',
+                templateUrl: 'partials/summary.html',
                 controller: 'bookCtrl',
             })
-            .when('/book3', {
+            .when('/payment', {
                 title: 'Book Car',
-                templateUrl: 'partials/book3.html',
+                templateUrl: 'partials/payment.html',
                 controller: 'bookCtrl',
             })
             .when('/verify', {
@@ -111,6 +111,12 @@ app.config(['$routeProvider','$locationProvider',
   }])
 
 
+
+  .filter('yesNo', function () {
+  return function (boolean) {
+    return boolean ? 'Yes' : 'No';
+  }
+  })
       .service("dates",function SetDates(){
         var datesTime = this;
         var today = new Date();

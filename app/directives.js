@@ -4,6 +4,7 @@ app.directive('focus', function() {
     }
 });
 
+
 app.directive('passwordMatch', [function () {
     return {
         restrict: 'A',

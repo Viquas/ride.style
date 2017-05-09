@@ -97,7 +97,8 @@
   <script src="js/sidebarEffects.js"></script>
   <script src="js/cbpFWTabs.js"></script>
   <script src="js/progressButton.js"></script>
-
+  <script src="js/angular-credit-cards.js"></script>
+  <!-- <script src="//rawgit.com/bendrucker/angular-credit-cards/v3.0.1/release/angular-credit-cards.js"></script> -->
 
 
   <script src="app/app.js"></script>

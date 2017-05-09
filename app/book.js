@@ -84,14 +84,10 @@ function get_map(){
 
 }
 
+
+
   $scope.next_personal = function(){
-    booking.chauffeur_selected = $scope.chauffeur_selected;
-    booking.delivery_address = $scope.delivery_address;
-    booking.collection_address = $scope.collection_address;
-    booking.pickup_location = $scope.pickup_location;
-    booking.collection_selector = $scope.collection_selector;
-    booking.additional_request = $scope.additional_request;
-    booking.deliver_the_Car = $scope.deliver_the_Car;
+
     var proceed = false;
 
     if($scope.chauffeur_selected){
@@ -119,6 +115,7 @@ function get_map(){
       }
     }
     if(proceed){
+      update_details();
     if(!angular.isUndefined($rootScope.uid) || $rootScope.uid != null ){
       //Logged in redirect to summary page
       $location.path("/summary");
@@ -126,7 +123,11 @@ function get_map(){
       //Not logged in redirect to signup page
       $location.path("/signup");
     }
+
+
   }
+
+
 
   }
 
@@ -224,7 +225,7 @@ function uploadImages(id){
       $timeout(function () {
           $scope.result = response.data;
           if(response.status == 200){
-            // redirect to the sumamary page
+            update_details();
             $location.path("/summary");
           }else{
             // Images did not uploaded
@@ -235,5 +236,18 @@ function uploadImages(id){
       });
   });
 }
+
+
+  function update_details(){
+    booking.chauffeur_selected = $scope.chauffeur_selected;
+    booking.delivery_address = $scope.delivery_address;
+    booking.collection_address = $scope.collection_address;
+    booking.pickup_location = $scope.pickup_location;
+    booking.collection_selector = $scope.collection_selector;
+    booking.additional_request = $scope.additional_request;
+    booking.deliver_the_Car = $scope.deliver_the_Car;
+
+  }
+
 
 });

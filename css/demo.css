@@ -181,15 +181,18 @@ margin-left: 50px;
 }
 
 .codrops-top a {
+
 	display: inline-block;
 	padding: 0 1em;
 	text-decoration: none;
 	letter-spacing: 0.1em;
+	transition: all .8s ease-in-out;
 }
 
 .codrops-top a:hover {
-	background: rgba(255,255,255,0.4);
+	/*background: rgba(255,255,255,0.4);*/
 	color: #333;
+	transform: scale(1.1);
 }
 
 .codrops-top span.right {
@@ -345,7 +348,7 @@ button.menu:hover {
 .subtitle{
 	color:#f7f7f7;
 	font-size: 1.4em;
-	font-size: 'Roboto-light';
+	/*font-family: 'Roboto-light';*/
 	line-height: 1.5em;
 	font-weight: 100;
 	letter-spacing: 2px;
@@ -699,7 +702,7 @@ textarea.text-textarea-small-left::placeholder {
 }
 select.filter{
 	width: 100%;
-	border: 1px solid #c9a657;
+	/*border: 1px solid #c9a657;*/
 	border-top: 0px;
 	height: 40px;
 	border-left: 0px;
@@ -1092,6 +1095,7 @@ bottom: 3px;
  margin:0px;
  padding: 0px;
 }
+
 @media screen and (max-width: 46.0625em) {
 	.home{
 		background-size: cover;
@@ -1190,6 +1194,8 @@ span.dot1.last:after{
 
      border-top: 0px solid #ddd;
 }
+
+
 
 @media screen and (max-width: 25em) {
 

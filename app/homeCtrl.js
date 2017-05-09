@@ -65,13 +65,12 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
   });
 
   $scope.logout = function () {
-      Data.get('logout').then(function (results) {
-
-          $location.path('login');
-      });
+          $location.path('/car');
   };
 
-
+  $scope.all = function () {
+    $location.path('car');
+  };
   // Start searching by date
   $scope.searchDate =function(){
     first.datesTime.startDate = $scope.startDateM;

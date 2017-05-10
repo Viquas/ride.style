@@ -1,8 +1,9 @@
 app.controller('carDetailCtrl', function ($scope, $rootScope, $routeParams, $location, $http,$filter, Data, dates, $timeout, car) {
 
   var datesData = dates;
-  var carData = car
+  var carData = car;
 
+  
 
   $scope.startDateM = datesData.startDate;
   $scope.endDateM = datesData.endDate;

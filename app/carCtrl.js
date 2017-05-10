@@ -5,6 +5,7 @@ app.controller('carCtrl', function ($scope, $rootScope, $routeParams, $location,
   // clear the car id from service
   car.id=0;
   var datesData = dates;
+  console.log(dates);
   var makeData = make;
   $scope.cars = [];
   $scope.loading = true;

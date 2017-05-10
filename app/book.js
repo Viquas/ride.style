@@ -15,7 +15,7 @@ app.controller('bookCtrl', function ($scope, $rootScope, $routeParams, $location
  $scope.additional_request = booking_details.additional_request;
  $scope.deliver_the_Car = booking_details.deliver_the_Car;
  $scope.car = '';
- $scope.disable_address=false;
+ $scope.disable_address = false;
 
 $scope.col_change = function(){
   if($scope.collection_selector){
@@ -134,11 +134,17 @@ function get_map(){
 
 
 // summary part
+$scope.terms_agreed = false;
 $scope.startDateM = datesData.startDate;
 $scope.endDateM = datesData.endDate;
 $scope.startTime = datesData.startTime;
 $scope.endTime = datesData.endTime;
 
+$scope.payment = function(){
+  update_details();
+  $location.path("/payment");
+
+}
 
 
 // Signup part
@@ -231,12 +237,9 @@ function uploadImages(id){
             // Images did not uploaded
           }
 
-
-
       });
   });
 }
-
 
   function update_details(){
     booking.chauffeur_selected = $scope.chauffeur_selected;
@@ -246,8 +249,8 @@ function uploadImages(id){
     booking.collection_selector = $scope.collection_selector;
     booking.additional_request = $scope.additional_request;
     booking.deliver_the_Car = $scope.deliver_the_Car;
-
   }
+
 
 
 });

@@ -42,7 +42,7 @@ app.config(['$routeProvider','$locationProvider',
             })
             .when('/signup', {
                 title: 'Sign up',
-                templateUrl: 'partials/personal.html',
+                templateUrl: 'partials/book1.html',
                 controller: 'bookCtrl',
             })
             .when('/summary', {
@@ -53,7 +53,7 @@ app.config(['$routeProvider','$locationProvider',
             .when('/payment', {
                 title: 'Book Car',
                 templateUrl: 'partials/payment.html',
-                controller: 'bookCtrl',
+                controller: 'paymentCtrl',
             })
             .when('/verify', {
                 title: 'Verify',

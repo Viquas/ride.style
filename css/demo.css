@@ -10,7 +10,9 @@
 		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
 		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
 }
-
+body{
+	min-height: 100%;
+}
 .btn-center{
 	margin-left: auto;
 	margin-right: auto;

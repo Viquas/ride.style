@@ -106,34 +106,59 @@ $app->post('/postCard', function() use ($app) {
     $db = new DbHandler();
 
     $name = $r->card->name;
-    $number = $r->card->number;
+    $number = $r->card->card_number;
     $month = $r->card->month;
     $year = $r->card->year;
     $country = $r->card->country;
     $user_id = $r->card->user_id;
     $card_name = $r->card->card_name;
 
-     $isCardExists = $db->getOneRecord("select 1 from card where card_number='$number' or user_id='$user_id'");
-    //  print_r($r);
-    if(!$isCardExists){
-        $table_name = "card";
-        $column_names = array('name', 'card_number', 'month','year', 'country','card_name','user_id');
-        $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
-        if ($result != NULL) {
-            $response["status"] = 200;
-            $response["message"] = "Card added successfully";
-            $response["uid"] = $result;
+     $isCardExists = $db->getOneRecord("select 1 from card where card_number='$number' AND user_id='$user_id'");
 
-        } else {
-            $response["status"] = "error";
-            $response["message"] = "Failed to create card. Please try again";
-            echoResponse(201, $response);
-        }
-    }else{
-        $response["status"] = "error";
-        $response["message"] = "Card entered exists already!";
-        echoResponse(201, $response);
-    }
+      if(!$isCardExists || $isCardExists == ''){
+          $table_name = "card";
+             $column_names = array('name', 'card_number', 'month','year', 'country','card_name','user_id');
+             $result = $db->insertIntoTable($r->card, $column_names, $table_name);
+
+             if ($result != NULL) {
+                 $response["status"] = 200;
+                 $response["message"] = "Card added successfully";
+
+
+               } else {
+                 $response["status"] = 401;
+                 $response["message"] = "Failed to create card. Please try again";
+
+              }
+                echoResponse(200,$response);
+     }else{
+       $response["status"] = 401;
+       $response["message"] = "Card entered exists already!";
+       echoResponse(201, $response);
+     }
+
+
+});
+$app->post('/postBooking', function() use ($app) {
+    $response = array();
+    $r = json_decode($app->request->getBody());
+    $db = new DbHandler();
+  
+
+          $table_name = "car_booking";
+          $column_names = array('car_id', 'user_id', 'from_time', 'to_time', 'chauffeur', 'pickup_location', 'delivery_location', 'collection_location', 'distance', 'additional_request',  'security', 'rent');
+             $result = $db->insertIntoTable($r->all, $column_names, $table_name);
+             if ($result != NULL) {
+                 $response["status"] = 200;
+                 $response["message"] = "Booking done successfully";
+               } else {
+                 $response["status"] = 401;
+                 $response["message"] = "Failed to create booking. Please try again";
+              }
+                echoResponse(200,$response);
+
+
+
 });
 function add_address($customer,$id){
   $return_value = 0;
@@ -215,6 +240,9 @@ $app->get('/getAllBooking', function() use ($app) {
            $json_obj->{'collection_location'} = $row[8];
            $json_obj->{'distance'} = $row[9];
            $json_obj->{'additional_request'} = $row[10];
+           $json_obj->{'chauffeur_location'} = $row[11];
+           $json_obj->{'security'} = $row[12];
+           $json_obj->{'rent'} = $row[13];
            $data[] = $json_obj;
         }
         $message = 'All users';
@@ -581,7 +609,38 @@ $app->get('/getCarsByMake', function() use ($app) {
 
 
 
+$app->get('/getCard', function() use ($app) {
+    $db = new DbHandler();
+    $user_id = $app->request()->get('user_id');
+    $query = "SELECT * FROM `card` WHERE `card`.`user_id` = $user_id";
+    $result = $db->getRecord($query);
 
+    $message = '';
+    $status = 0;
+      $data= array();
+    if ($result != NULL) {
+        $status = 200;
+        for ($i=0; $i < sizeof($result) ; $i++) {
+        $row = $result[$i];
+        $json_obj = new stdClass();
+           $json_obj->{'id'} = (int)$row[0];
+           $json_obj->{'name'} = $row[1];
+           $json_obj->{'card_number'} = (int)$row[2];
+           $json_obj->{'month'} = (int)$row[3];
+           $json_obj->{'year'} = (int)$row[4];
+           $json_obj->{'country'} = $row[5];
+           $json_obj->{'card_name'} = $row[6];
+           $json_obj->{'user_id'} = (int)$row[7];
+           $data[] = $json_obj;
+        }
+        $message = 'Cards';
+        } else {
+            $status = 500;
+            $message = 'No Cards found';
+
+        }
+    echoResponse(200, array("status"=>$status ,"message"=>$message,"value"=>$data));
+});
 
 $app->get('/getCarsFiltered', function() use ($app) {
     $db = new DbHandler();
@@ -817,6 +876,8 @@ $app->get('/getUser', function() use ($app) {
         }
     echoResponse(200, array("status"=>200,"message"=>$message,"value"=>$data));
 });
+
+
 
 $app->get('/getCar', function() use ($app) {
     $carId = $app->request()->get('car_id');

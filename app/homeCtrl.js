@@ -1,4 +1,4 @@
-app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data, $timeout, dates , make) {
+app.controller('homeCtrl', function ($scope, $rootScope,$filter, $routeParams, $location, $http, Data, $timeout, dates , make) {
 
 // reset the date and make services when in home
   var today = new Date();
@@ -31,6 +31,12 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
    autoclose: true,
    });
 
+   $('#endDate').datepicker({
+  startDate: 'tomorrow',
+    autoclose: true,
+    });
+
+
    $("#startDate").on("change",function(){
       $scope.startDateM = $(this).val();
       $scope.endDateM  = $(this).val();
@@ -43,27 +49,26 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
       $scope.$apply();
    }
 
-   $('#endDate').datepicker({
-  startDate: 'tomorrow',
-    autoclose: true,
-    });
+
 
    $("#endDate").on("change",function(){
 
     });
 
     $timeout(function () {
-      $('#endDate').datepicker('setDate', '+2d');
       $('#startDate').datepicker('setDate', '+1d');
-      // $scope.apply();
-}, 300);
+      $('#endDate').datepicker('setDate', '+2d');
+      $scope.$apply();
+    }, 300);
 
-  var user_id = 187;
-  Data.get('getUser?user_id='+user_id).then(function (results) {
+  if(!angular.isUndefined($rootScope.uid) || $rootScope.uid != null ){
+  Data.get('getUser?user_id='+$rootScope.uid).then(function (results) {
       $scope.me = results.value;
 
   });
+}else{
 
+}
   $scope.logout = function () {
           $location.path('/car');
   };
@@ -94,6 +99,8 @@ app.controller('homeCtrl', function ($scope, $rootScope, $routeParams, $location
     first.make.set = true;
     $location.path("/car");
   };
+
+
 
 
 });

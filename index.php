@@ -117,6 +117,7 @@
   <script src="app/test.js"></script>
   <script src="app/carCtrl.js"></script>
   <script src="app/carDetailCtrl.js"></script>
+  <script src="app/payment.js"></script>
   <script src="app/book.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFGf8nyF-LEf7dul5zNZir-LpY4y8LhqA&callback=initMap"
    async defer></script>

@@ -8,11 +8,11 @@
         <p class="filter-title"> Start Date </p>
       </div>
       <div class="col-sm-6">
-
         <div class="input-group">
-          <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
+          <div class="input-group-addon date-group-addon">
+            <i class="flaticon flaticon-calendar-6"></i></div>
         <!-- <input class="form-input date-input" type="date">  </input> -->
-        <input data-provide="datepicker" class=" date-input-small " id="startDate" onkeydown="return false"  ng-model="startDateM">
+        <input data-provide="datepicker" class="date-input-small" id="startDate1" onkeydown="return false"  ng-model="startDateM" ng-change="startChange()">
         </div>
           </div>
 
@@ -59,7 +59,7 @@
         <div class="input-group">
           <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
         <!-- <input class="form-input date-input" type="date">  </input> -->
-        <input data-provide="datepicker" class=" date-input-small " id="endDate" onkeydown="return false"  ng-model="endDateM">
+        <input data-provide="datepicker" class=" date-input-small " id="endDate1" onkeydown="return false"  ng-model="endDateM">
         </div>
           </div>
 
@@ -130,12 +130,14 @@
           <a class="filter-reset" ng-click="reset();">Reset All</a>
         </div>
   </div>
+  <div class="golden-message" ng-show="no_date">
+  <p class="text-center">  Select the date to filter the cars based on availability.</p>
+  </div>
     <div class="col-lg-8" id="right">
       <!-- No car screeen starts here -->
       <div class="top-fifty" ng-show="no_car">
         <p class="text-center" >
          <img  src="img/logo.png" />
-
        </p>
        <p class="spec_text">
            No cars found
@@ -154,12 +156,12 @@
        <div ng-show="!loading" ng-repeat="car in cars" class="car_div" ng-click="car_details(car.id)">
       <div class="car_card">
         <div class="car_card1">
-        <img src="img/lambo.jpg" ></img>
+        <img src="images/cars/{{car.images[0].image_link}}" ></img>
       </div>
       </div>
       <div class="detailcard" >
           <div class="col-sm-1">
-            <img class="detail-logo" src="img/Lambo_logo.png"> </img>
+            <img class="detail-logo" src="img/brands/{{car.make}}.png"> </img>
           </div>
           <div class="col-sm-8">
             <h3 ><span class="detailTitle">{{car.name}}</span><span class="detailSubTitle">{{car.model}}</span></h3>

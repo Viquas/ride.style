@@ -28,7 +28,7 @@
 
               <body ng-cloak="" >
 
-              		<div id="st-container" class="st-container" ng-controller="loginCtrl">
+              		<div id="st-container" class="st-container" ng-controller="authCtrl">
 
 
               			<nav class="st-menu st-effect-12" id="menu-12">
@@ -58,14 +58,13 @@
                       <a href="#/" class="logo-link">
                         <img src="img/logo.png" class="logo-img" > </img>
                       </a>
-                      <span ng-show="!login">
+                      <span ng-show="!loggedIn">
                         <button type="button" class="user" >
                           <i class="flaticon flaticon-user-3 signup-img"></i>
-                            <p class="user-text"> Sign up</p>
+                            <p class="user-text" ng-click=goLogin();> Log in</p>
                         </button>
                       </span>
-                      <span ng-show="login">
-
+                      <span ng-show="loggedIn">
                         <button type="button" class="user" ng-click="logout();">
                           <i class="flaticon flaticon-exit-2 signup-img"></i>
                             <p class="user-text" > Log Out</p>

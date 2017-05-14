@@ -1,5 +1,5 @@
-app.controller('bookCtrl', function ($scope, $rootScope, $routeParams, $location,$timeout, $http,Upload, Data, car,booking, dates) {
-
+app.controller('bookCtrl', function ($scope,$window, $rootScope, $routeParams, $location,$timeout, $http,Upload, Data, car,booking, dates) {
+$window.scrollTo(0, 0);
  $.fn.datepicker.defaults.format = "dd/MM/yyyy";
   var datesData = dates;
   var carData = car;

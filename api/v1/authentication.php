@@ -143,7 +143,7 @@ $app->post('/postBooking', function() use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
     $db = new DbHandler();
-  
+
 
           $table_name = "car_booking";
           $column_names = array('car_id', 'user_id', 'from_time', 'to_time', 'chauffeur', 'pickup_location', 'delivery_location', 'collection_location', 'distance', 'additional_request',  'security', 'rent');
@@ -185,7 +185,7 @@ function add_address($customer,$id){
 $app->get('/logout', function() {
     $db = new DbHandler();
     $session = $db->destroySession();
-    $response["status"] = "info";
+    $response["status"] = 200;
     $response["message"] = "Logged out successfully";
     echoResponse(200, $response);
 });
@@ -260,24 +260,25 @@ $app->get('/getBooking', function() use ($app) {
     $car_id = $app->request()->get('car_id');
     $user_id = $app->request()->get('user_id');
     $booking_id = $app->request()->get('booking_id');
+    $query =  '';
     if(isset($car_id)){
       $compare_id = $app->request()->get('car_id');
-      $query = "select b.id ,b.user_id, b.car_id, b.additional_request, b.chauffeur, b.collection_location,
-      b.delivery_location, b.distance, b.from_time, b.to_time, b.pickup_location, u.name as username,
+      $query .= "select b.id ,b.user_id, b.car_id, b.additional_request, b.chauffeur, b.collection_location,
+      b.delivery_location, b.distance, b.from_time, b.to_time, b.pickup_location, u.first_name as first_name,
        c.name as car_name from car_booking  as b
   inner join customers_auth u on b.user_id = u.uid
   inner join cars c on b.car_id = c.id where b.car_id = ".$compare_id;
     }else if(isset($user_id)){
       $compare_id = $app->request()->get('user_id');
-      $query = "select b.id ,b.user_id, b.car_id, b.additional_request, b.chauffeur, b.collection_location,
-      b.delivery_location, b.distance, b.from_time, b.to_time, b.pickup_location, u.name as username,
+      $query .= "select b.id ,b.user_id, b.car_id, b.additional_request, b.chauffeur, b.collection_location,
+      b.delivery_location, b.distance, b.from_time, b.to_time, b.pickup_location, u.first_name as first_name,
        c.name as car_name from car_booking  as b
   inner join customers_auth u on b.user_id = u.uid
   inner join cars c on b.car_id = c.id where b.user_id = ".$compare_id;
     }else if(isset($booking_id)){
       $compare_id = $app->request()->get('booking_id');
-      $query = "select b.id ,b.user_id, b.car_id, b.additional_request, b.chauffeur, b.collection_location,
-      b.delivery_location, b.distance, b.from_time, b.to_time, b.pickup_location, u.name as username,
+      $query .= "select b.id ,b.user_id, b.car_id, b.additional_request, b.chauffeur, b.collection_location,
+      b.delivery_location, b.distance, b.from_time, b.to_time, b.pickup_location, u.first_name as first_name,
        c.name as car_name from car_booking  as b
   inner join customers_auth u on b.user_id = u.uid
   inner join cars c on b.car_id = c.id where b.id = ".$compare_id;
@@ -552,11 +553,11 @@ $app->get('/getCarsByMake', function() use ($app) {
     $make_id = $app->request()->get('id');
     $result = $db->getRecord("select u.id, u.name,m.name as make, s.name as category, u.model,
     u.information, u.year, t.type as transmission, cs.daily_price, cs.weekly_price ,
-     cs.security_deposit from cars u
+     cs.security_deposit, cs.bhp, cs.acceleration, cs.speed, cs.fuel, cs.seat from cars u
      inner join car_category s on u.car_category_id = s.id
      inner join car_model m on u.make_id = m.id
      inner join transmission t on u.transmission_id = t.id
-     inner join car_specifications cs on cs.car_id = u.id
+
      where m.id = ".$make_id);
 
     $message = '';
@@ -579,10 +580,14 @@ $app->get('/getCarsByMake', function() use ($app) {
            $json_obj->{'daily_price'} = $row[8];
            $json_obj->{'weekly_price'} = $row[9];
            $json_obj->{'security_deposit'} = $row[10];
+           $json_obj->{'bhp'} = $row[11];
+           $json_obj->{'acceleration'} = $row[12];
+           $json_obj->{'speed'} = $row[13];
+           $json_obj->{'fuel'} = $row[14];
+           $json_obj->{'seat'} = $row[15];
            // get images of all car id
            $images = getCarImages('car_images',$row[0]);
             $image_data = array();
-
              if(sizeof($images) > 0){
            for ($j=0; $j < sizeof($images) ; $j++) {
               $image_obj = new stdClass();
@@ -652,7 +657,7 @@ $app->get('/getCarsFiltered', function() use ($app) {
     $low_price = $app->request()->get('low_price');
     $high_price = $app->request()->get('high_price');
 
-    $query = "SELECT c.id, c.name, m.name as make, s.name as category, c.model, c.information, c.year, t.type as transmission,cs.daily_price, cs.weekly_price , cs.security_deposit
+    $query = "SELECT c.id, c.name, m.name as make, s.name as category, c.model, c.information, c.year, t.type as transmission,cs.daily_price, cs.weekly_price , cs.security_deposit,  cs.bhp, cs.acceleration, cs.speed, cs.fuel, cs.seat
           FROM cars c
           inner join car_category s on c.car_category_id = s.id
           inner join car_model m on c.make_id = m.id
@@ -746,6 +751,12 @@ $app->get('/getAllCars', function() use ($app) {
     inner join car_specifications cs on cs.car_id = u.id
  ");
 
+  print_r("select u.id, u.name,m.name as make, s.name as category, u.model, u.information, u.year, t.type as transmission,
+  cs.daily_price, cs.weekly_price , cs.security_deposit  from cars u
+  inner join car_category s on u.car_category_id = s.id
+  inner join car_model m on u.make_id = m.id
+  inner join transmission t on u.transmission_id = t.id
+  inner join car_specifications cs on cs.car_id = u.id");
 
     $message = '';
     $status = 0;
@@ -785,7 +796,7 @@ $app->get('/getAllCars', function() use ($app) {
            $json_obj->{'images'} = $image_data;
            $data[] = $json_obj;
         }
-        $message = 'All users';
+        $message = 'All Cars';
         } else {
             $status = 500;
             $message = 'No user found';
@@ -883,7 +894,7 @@ $app->get('/getCar', function() use ($app) {
     $carId = $app->request()->get('car_id');
     $db = new DbHandler();
     $result = $db->getOneRecord("select u.id, u.name,  m.name as make, s.name as category, u.model, u.information, u.year, t.type as transmission,
-    cs.daily_price,cs.weekly_price , cs.security_deposit,cs.location_city,cs.address,cs.latitude,cs.longitude  from cars u
+    cs.daily_price,cs.weekly_price , cs.security_deposit,cs.location_city,cs.address,cs.latitude,cs.longitude, cs.bhp, cs.acceleration, cs.speed, cs.fuel, cs.seat  from cars u
     inner join car_category s on u.car_category_id = s.id
     inner join car_model m on u.make_id = m.id
     inner join transmission t on u.transmission_id = t.id
@@ -909,6 +920,11 @@ $app->get('/getCar', function() use ($app) {
         $json_obj->{'address'} = $result['address'];
         $json_obj->{'latitude'} = $result['latitude'];
         $json_obj->{'longitude'} = $result['longitude'];
+        $json_obj->{'bhp'} = $result['bhp'];
+        $json_obj->{'speed'} = $result['speed'];
+        $json_obj->{'acceleration'} = $result['acceleration'];
+        $json_obj->{'fuel'} = $result['fuel'];
+        $json_obj->{'seat'} = $result['seat'];
         $images = getCarImages('car_images',$result['id']);
         $image_data = array();
         if(sizeof($images) > 0){
@@ -940,21 +956,28 @@ $app->put('/updateCarSpecs', function() use ($app) {
   $weekly_price = $r->car->weekly_price;
   $daily_price = $r->car->daily_price;
   $security_deposit = $r->car->security_deposit;
+  $bhp = $r->car->bhp;
+  $acceleration = $r->car->acceleration;
+  $speed = $r->car->speed;
+  $fuel = $r->car->fuel;
+  $seat = $r->car->seat;
+
   $car_id = $r->car->car_id;
-  $query = "UPDATE car_specifications SET `weekly_price` = $weekly_price ,`daily_price` = $daily_price, `security_deposit` = $security_deposit
+  $query = "UPDATE car_specifications SET `weekly_price` = $weekly_price ,`daily_price` = $daily_price, `security_deposit` = $security_deposit,`bhp` = '$bhp',
+   `acceleration` = $acceleration,`speed` = '$speed',`fuel` = '$fuel', `seat` = '$seat'
   WHERE `car_specifications`.`car_id` = $car_id";
   $result = $db->updateTable($query);
-
-  if ($result != NULL) {
-      $response["status"] = "success";
-      $response["message"] = "Car update successfully";
-      $response["id"] = $result;
-      echoResponse(200, $response);
-  } else {
-      $response["status"] = "error";
-      $response["message"] = "Failed to update car. Please try again";
-      echoResponse(201, $response);
-  }
+    print_r($query);
+  // if ($result != NULL) {
+  //     $response["status"] = "success";
+  //     $response["message"] = "Car update successfully";
+  //     $response["id"] = $result;
+  //     echoResponse(200, $response);
+  // } else {
+  //     $response["status"] = "error";
+  //     $response["message"] = "Failed to update car. Please try again";
+  //     echoResponse(201, $response);
+  // }
 
 });
 

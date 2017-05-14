@@ -16,7 +16,7 @@ app.controller('addCarImagesCtrl', function ($scope, $rootScope, $routeParams, $
       // });
 
         Upload.upload({
-            url: 'http://localhost/treestack/ride/api/v1/postCarImages',
+            url: 'http://localhost/treestack/ride.style/api/v1/postCarImages',
             data: {
                 files: files,
                 car_id:car_id

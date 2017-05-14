@@ -17,17 +17,17 @@ app.controller('homeCtrl', function ($scope, $rootScope,$filter, $routeParams, $
   first.datesTime = dates;
   first.make = make;
 
-  Data.get('getAllUser').then(function (results) {
-      $scope.allUsers = results.value;
-  });
+  // Data.get('getAllUser').then(function (results) {
+  //     $scope.allUsers = results.value;
+  // });
   $scope.startTime = '00:00:00';
   $scope.endTime = '00:00:00';
 
-  $.fn.datepicker.defaults.format = "dd/MM/yyyy";
+  $.fn.datepicker.defaults.format = "yyyy-mm-dd";
 
   $('#startDate').datepicker({
    startDate: 'today',
-   daysOfWeekDisabled: [0],
+  //  daysOfWeekDisabled: [0],
    autoclose: true,
    });
 
@@ -36,11 +36,11 @@ app.controller('homeCtrl', function ($scope, $rootScope,$filter, $routeParams, $
     autoclose: true,
     });
 
-
    $("#startDate").on("change",function(){
       $scope.startDateM = $(this).val();
       $scope.endDateM  = $(this).val();
         $scope.updateEndDate();
+
    });
     $scope.updateEndDate;
 
@@ -49,9 +49,8 @@ app.controller('homeCtrl', function ($scope, $rootScope,$filter, $routeParams, $
       $scope.$apply();
    }
 
-
-
    $("#endDate").on("change",function(){
+
 
     });
 
@@ -66,11 +65,11 @@ app.controller('homeCtrl', function ($scope, $rootScope,$filter, $routeParams, $
       $scope.me = results.value;
 
   });
-}else{
+  }else{
 
-}
+  }
   $scope.logout = function () {
-          $location.path('/car');
+    $location.path('car');
   };
 
   $scope.all = function () {
@@ -85,7 +84,6 @@ app.controller('homeCtrl', function ($scope, $rootScope,$filter, $routeParams, $
           first.datesTime.set = true;
           $location.path("/car");
           // get request to search the db for dated parameters
-
   };
 
   // Get by make settings

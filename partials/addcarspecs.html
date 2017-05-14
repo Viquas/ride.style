@@ -15,6 +15,7 @@
                 Add Car Specs
               </h4>
               <br/>
+              <h5> {{car.name}}</h5>
               <form name="carSpecsForm" class="form-horizontal" role="form">
                   <div class="form-group">
                       <label class="col-sm-5 control-label no-padding-right" for="Daily price" >Daily price</label>
@@ -39,6 +40,52 @@
                       <div class="col-sm-7">
                           <span class="block input-icon input-icon-right">
                               <input type="number" class="form-control" placeholder="Security Deposit" name="security_deposit" ng-model="car.security_deposit" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Security Deposit">bhp</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="BHP" name="security_deposit" ng-model="car.bhp" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Security Deposit">acceleration</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="acceleration" name="security_deposit" ng-model="car.acceleration" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Security Deposit">Speed</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="speed" name="security_deposit" ng-model="car.speed" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Security Deposit">fuel</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+                              <input type="text" class="form-control" placeholder="Fuel" name="security_deposit" ng-model="car.fuel" required focus/>
+                              <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
+                          </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-5 control-label no-padding-right" for="Security Deposit">seat</label>
+                      <div class="col-sm-7">
+                          <span class="block input-icon input-icon-right">
+
+                              <input type="text" class="form-control" placeholder="Seat" name="security_deposit" ng-model="car.seat" required />
                               <!-- <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span> -->
                           </span>
                       </div>

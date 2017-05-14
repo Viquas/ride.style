@@ -11,7 +11,7 @@ app.config(['$routeProvider','$locationProvider',
             .when('/logout', {
                 title: 'Logout',
                 templateUrl: 'partials/login.html',
-                controller: 'logoutCtrl'
+                controller: 'authCtrl'
             })
             // .when('/signup', {
             //     title: 'Signup',
@@ -156,6 +156,7 @@ app.config(['$routeProvider','$locationProvider',
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = false;
             Data.get('session').then(function (results) {
+
                 if (results.uid) {
                     $rootScope.authenticated = true;
                     $rootScope.uid = results.uid;
@@ -164,6 +165,7 @@ app.config(['$routeProvider','$locationProvider',
                     // $location.path("/dashboard");
                 }
                  else {
+
                     // var nextUrl = next.$$route.originalPath;
                     // if (nextUrl == '/signup' || nextUrl == '/login') {
                     //
@@ -171,6 +173,7 @@ app.config(['$routeProvider','$locationProvider',
                     //     $location.path("/login");
                     // }
                 }
+
             });
         });
     });

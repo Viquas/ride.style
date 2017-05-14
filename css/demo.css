@@ -10,8 +10,28 @@
 		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
 		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
 }
+
+.error-icon{
+	width:19px;
+}
+.detail-logo{
+	width:50px;
+}
+.golden-message{
+	font-size: 14px;
+	color:#333;
+	font-weight: 400;
+	font-family: 'Roboto','Sans-serif';
+}
 body{
 	min-height: 100%;
+}
+a{
+	color:#333;
+}
+a:hover{
+	color:#333;
+
 }
 .btn-center{
 	margin-left: auto;
@@ -160,14 +180,17 @@ margin-left: 50px;
 	display: inline;
 
 }
+.pad-little{
+	margin-right: 10px !important;
+}
 .logo-text{
-	font-size:18px;
+	font-size:15px;
 	display: inline;
 	vertical-align: middle;
 }
 .ham-img{
  width: 1.3em;
- height: 1em;
+ /*height: 1em;*/
  vertical-align:middle;
 }
 .codrops-top {
@@ -830,6 +853,14 @@ html::-webkit-scrollbar{
 .carousel .carousel-inner {
     max-height: 80vh;
 }
+
+.item img{
+    display:none;
+}
+.f-width{
+	width:100%;
+}
+
 .carousel-indicators{
 	bottom: 90px;
 }
@@ -1102,7 +1133,6 @@ bottom: 3px;
 	.home{
 		background-size: cover;
 		background-position: center;
-
 	}
 	.column {
 		width: 100%;

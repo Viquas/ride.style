@@ -13,32 +13,28 @@
 
 
     </div>
-
+  <form name="loginForm" class="form-horizontal" role="form">
     <div class="form-group row">
 <div class="col-lg-4 col-lg-offset-4">
   <div class="col-sm-12">
-    <input class="form-control form-text" placeholder="Email" type="email" ng-model="login.email" required ng-focus="clear();" focus>
+    <input class="form-control form-text" placeholder="Email" type="text" ng-model="login.email" required autocomplete="off" focus>
   </div>
   <div class="col-sm-12">
-    <input class="form-control form-text" placeholder="Password" type="password" ng-model="login.password" ng-focus="clear();" required>
+    <input class="form-control form-text" placeholder="Password" type="password" ng-model="login.password" autocomplete="off" required>
   </div>
     <div class="col-sm-12">
       <a href="" ng-click="forgot_password();" class="slant text-right"><p> Forgot Password?</p></a>
     </div>
     <div class="col-sm-12" ng-show="wrongPassword" ng-hide="!wrongPassword">
       Wrong Email/Password combinaion
-    </div>
-
-</div>
-</div>
-
+   </div>
+  </div>
+ </div>
+</form>
 
 
     <div class="row">
 <div class="col-lg-6 col-lg-offset-3">
-
-
-
     <div class="col-sm-12">
 
       <p class="text-center">

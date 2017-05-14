@@ -97,6 +97,10 @@ $scope.rentCar = function(){
           //Create model to show the users confirmation about the rent
           //or
           // Take(Create) him the confirmation page
+          $timeout(function () {
+          $location.path("/payment");
+        }, 2000);
+
         }else{
 
 

@@ -72,6 +72,11 @@ $scope.clear = function(){
 }
 
 
+$scope.home = function(){
+  console.log()
+  $location.path("/");
+}
+
 $scope.rentCar = function(){
   var sd = new Date(dates.startDate);
   var ed = new Date(dates.endDate);
@@ -85,21 +90,15 @@ $scope.rentCar = function(){
   }
   var all = {car_id: parseInt(car.id), user_id:$rootScope.uid, from_time:start, to_time:end, chauffeur:chauffeur,pickup_location:booking.pickup_location ,delivery_location: booking.delivery_address , collection_location: booking.collection_address, additional_request: booking.additional_request, rent:parseInt($scope.rent), security:parseInt($scope.security)};
 
-
-  console.log(all);
-
     Data.post('postBooking', {
         all: all
     }).then(function (results) {
         console.log(results);
         if(results.status == 200) {
-          $scope.paid = false;
-          //Create model to show the users confirmation about the rent
-          //or
-          // Take(Create) him the confirmation page
+
           $timeout(function () {
-          $location.path("/payment");
-        }, 2000);
+          $location.path("/verify");
+        }, 7000);
 
         }else{
 

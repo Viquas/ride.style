@@ -58,7 +58,7 @@ app.config(['$routeProvider','$locationProvider',
             .when('/verify', {
                 title: 'Verify',
                 templateUrl: 'partials/verify.html',
-                controller: 'bookCtrl',
+                controller: 'paymentCtrl',
             })
             .when('/car_detail', {
                 title: 'Car Detail',
@@ -147,7 +147,7 @@ app.config(['$routeProvider','$locationProvider',
         bdetails.delivery_address = '';
         bdetails.collection_address = '';
         bdetails.pickup_location = '';
-        bdetails.collection_selector = '';
+        bdetails.collection_selector = true;
         bdetails.additional_request = '';
         bdetails.deliver_the_Car = 1;
       })

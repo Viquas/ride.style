@@ -14,14 +14,8 @@ app.controller('carDetailCtrl', function ($scope, $rootScope, $routeParams, $loc
     $location.path("/");
   }
 
-$.fn.datepicker.defaults.format = "yyyy-mm-dd";
-//Update the end date with the change in start date
-  // $("#startDate").on("change",function(){
-  //  $scope.startDateM = $(this).val();
-  //  $scope.endDateM  = $(this).val();
-  //    $scope.updateEndDate();
-  //
-  // });
+
+
 
   $scope.startChange = function(){
     $timeout(function () {
@@ -51,8 +45,9 @@ $scope.updateEndDate = function(){
             all_dates.push(range[j]);
           }
         }
-        updateCalendar(all_dates);
+
     }
+    updateCalendar(all_dates);
   });
 
 
@@ -82,7 +77,7 @@ $scope.updateEndDate = function(){
      });
 
      $('#endDate').datepicker({
-      startDate: 'today',
+      startDate: $scope.startDateM,
       datesDisabled: dates,
       autoclose: true,
       });

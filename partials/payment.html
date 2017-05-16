@@ -188,6 +188,9 @@
         <div class="col-sm-12">
           <div class="wrapper">
             <section>
+              <p class="text-center golden-message" ng-show="!paid" ng-hide="paid">
+            <img src="img/exclamatory.png" class="error-icon">  Please select the cards for rent and security deposits
+              </p>
               <!-- <p class="" ng-show="paid" ng-hide="!paid"><i> Please select a card for security deposit and car rent </i></p> -->
               <p class="text-center">
                 <button class="progress-button" data-style="fill" data-horizontal ng-disabled="!paid" ng-click="rentCar()">Rent this car</button>

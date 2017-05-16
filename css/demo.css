@@ -22,6 +22,11 @@
 	color:#333;
 	font-weight: 400;
 	font-family: 'Roboto','Sans-serif';
+	margin-top: 10px;
+    /*margin-bottom: -10px;*/
+}
+.loading{
+	max-width: 200px;
 }
 body{
 	min-height: 100%;
@@ -368,7 +373,7 @@ button.menu:hover {
 .hr{
 	margin:0px 0px 10px 0px;
     width: 10%;
-  border-bottom: 2px solid rgba(201, 166, 87, 0.1);
+  border-bottom: 2px solid rgba(201, 166, 87, 0.9);
 }
 .subtitle{
 	color:#f7f7f7;

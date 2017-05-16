@@ -41,12 +41,7 @@ $window.scrollTo(0, 0);
      }, 300);
    }
 
-  // $("#startDate1").on("change",function(){
-  //   //  $scope.startDateM = $(this).val();
-  //   console.log('s');
-  //
-  // });
-  //   $scope.updateEndDate;
+
 
   $scope.updateEndDate = function(){
    $('#endDate1').datepicker('setStartDate', $scope.startDateM);

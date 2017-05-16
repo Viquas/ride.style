@@ -1,10 +1,12 @@
 app.controller('bookCtrl', function ($scope,$window, $rootScope, $routeParams, $location,$timeout, $http,Upload, Data, car,booking, dates) {
 $window.scrollTo(0, 0);
- $.fn.datepicker.defaults.format = "dd/MM/yyyy";
+
   var datesData = dates;
   var carData = car;
   var booking_details =booking;
   console.log(booking_details);
+  console.log(datesData);
+    console.log(carData);
 
  // Variables to be collected
  $scope.chauffeur_selected = booking_details.chauffeur_selected;;
@@ -15,15 +17,19 @@ $window.scrollTo(0, 0);
  $scope.additional_request = booking_details.additional_request;
  $scope.deliver_the_Car = booking_details.deliver_the_Car;
  $scope.car = '';
- $scope.disable_address = false;
+ $scope.disable_address = true;
+ $scope.collection_placeholder = 'Collection address same as delivery address';
 
 $scope.col_change = function(){
   if($scope.collection_selector){
     $scope.disable_address=true;
     $scope.collection_address = '';
+    $scope.collection_placeholder = 'Collection address same as delivery address';
   }else{
     $scope.disable_address=false;
-
+    $scope.collection_placeholder = 'Enter Collection address';
+    console.log($scope.collection_placeholder);
+    $scope.$apply();
   }
 }
 
@@ -33,6 +39,9 @@ Data.get('getCar?car_id='+car.id).then(function (results) {
   if(results.status == 200){
       $scope.car = results.value;
           $timeout(function () {
+            get_booking_details();
+            console.log($scope.car);
+
           get_map();
          }, 300);
   }else{
@@ -40,8 +49,24 @@ Data.get('getCar?car_id='+car.id).then(function (results) {
   }
 });
 
+function get_booking_details(){
+
+    var array_for_days = dateRange($scope.startDateM,$scope.endDateM);
+    console.log('Total days rented = '+array_for_days.length);
+    $scope.car.vat = 35;
+    $scope.car.delivery_charges = 200;
+    $scope.car.days = array_for_days.length - 1;
+    $scope.car.total_chauffeur = $scope.car.days * 40;
+    $scope.car.total_rent = $scope.car.days * $scope.car.daily_price;
+
+    $scope.car.total = $scope.car.total_rent + $scope.car.vat + $scope.car.delivery_charges;
+    if($scope.chauffeur_selected){
+        $scope.car.total += $scope.car.total_chauffeur;
+    }
+}
+
 function get_map(){
-  console.log($scope.car);
+
     var centerLocation = {lat:$scope.car.latitude, long:$scope.car.longitude};
     var mapOptions = {
            zoom: 16,
@@ -85,7 +110,6 @@ function get_map(){
 }
 
 
-
   $scope.next_personal = function(){
 
     var proceed = false;
@@ -123,28 +147,91 @@ function get_map(){
       //Not logged in redirect to signup page
       $location.path("/signup");
     }
-
-
   }
 
-
-
   }
-
-
 
 // summary part
+ $.fn.datepicker.defaults.format = "yyyy-mm-dd";
+ $scope.startDateM = datesData.startDate;
+ $scope.endDateM = datesData.endDate;
+ $scope.startTime = datesData.startTime;
+ $scope.endTime = datesData.endTime;
 $scope.terms_agreed = false;
-$scope.startDateM = datesData.startDate;
-$scope.endDateM = datesData.endDate;
-$scope.startTime = datesData.startTime;
-$scope.endTime = datesData.endTime;
 
-$scope.payment = function(){
-  update_details();
-  $location.path("/payment");
 
+
+$scope.startChange = function(){
+  $timeout(function () {
+    $scope.updateEndDate();
+  }, 300);
 }
+
+$scope.updateEndDate = function(){
+$('#endDate1').datepicker('setStartDate', $scope.startDateM);
+}
+
+Data.get('getBooking?car_id='+carData.id).then(function (results) {
+  $scope.booking=results.value;
+
+  var all_dates = [];
+  if(results.value.length > 0){
+      var len = results.value.length;
+      for(var i=0; i<len; i++){
+        var start_date = results.value[i].from_time;
+        var end_date = results.value[i].to_time;
+        var s = start_date.split(" ");
+        var e = end_date.split(" ");
+        var range = dateRange(s[0],e[0]);
+        for(var j=0; j<range.length; j++){
+          all_dates.push(range[j]);
+        }
+      }
+
+  }
+  updateCalendar(all_dates);
+});
+
+
+
+function dateRange(startDate,endDate){
+  var listDate = [];
+  var dateMove = new Date(startDate);
+  var strDate = startDate;
+  while (strDate < endDate){
+   var strDate = dateMove.toISOString().slice(0,10);
+   listDate.push(strDate);
+   dateMove.setDate(dateMove.getDate()+1);
+ };
+return listDate;
+}
+
+
+function updateCalendar(dates){
+  $('#startDate1').datepicker({
+     startDate: 'today',
+   datesDisabled: dates,
+   autoclose: true,
+   });
+
+   $('#endDate1').datepicker({
+      startDate: $scope.startDateM,
+    datesDisabled: dates,
+    autoclose: true,
+    });
+
+
+    $('#endDate1').datepicker('setDate', $scope.endDateM);
+}
+
+  // Go to payment
+  $scope.payment = function(){
+    update_details();
+    $location.path("/payment");
+  }
+
+
+
 
 
 // Signup part
@@ -249,6 +336,10 @@ function uploadImages(id){
     booking.collection_selector = $scope.collection_selector;
     booking.additional_request = $scope.additional_request;
     booking.deliver_the_Car = $scope.deliver_the_Car;
+    datesData.startDate = $scope.startDateM;
+    datesData.endDate = $scope.endDateM;
+    datesData.startTime = $scope.startTime;
+    datesData.endTime = $scope.endTime;
   }
 
 

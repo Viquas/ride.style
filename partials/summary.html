@@ -22,13 +22,13 @@
 
 
         <p class="text-center page-info">
-          <img class="trip-logo" src="img/Lambo_logo.png"> </img>
+          <img class="trip-logo" src="img/brands/{{car.make}}.png"> </img>
         </p>
         <p class="spec_text text-center">
-          Lamborghini Aventador
+          {{car.name}}
         </p>
         <p class="spec_text text-center">
-          Pirelli Edition <span class="dot1"></span> 2014 Model
+          {{car.model}}<span class="dot1"></span> {{car.year}} Model
         </p>
       </div>
       <div class="col-sm-4" >
@@ -51,7 +51,7 @@
             <div class="input-group">
               <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
             <!-- <input class="form-input date-input" type="date">  </input> -->
-            <input data-provide="datepicker" class=" date-input-small " id="startDate" onkeydown="return false"  ng-model="startDateM">
+            <input data-provide="datepicker" class=" date-input-small " id="startDate1" onkeydown="return false"  ng-model="startDateM" ng-change="startChange()">
             </div>
               </div>
                           <div class="col-sm-6">
@@ -98,7 +98,7 @@
             <div class="input-group">
               <div class="input-group-addon date-group-addon"><i class="flaticon flaticon-calendar-6"></i></div>
             <!-- <input class="form-input date-input" type="date">  </input> -->
-            <input data-provide="datepicker" class=" date-input-small" id="endDate" onkeydown="return false"  ng-model="startDateM">
+            <input data-provide="datepicker" class=" date-input-small" id="endDate1" onkeydown="return false"  ng-model="endDateM">
             </div>
               </div>
                           <div class="col-sm-6">
@@ -187,15 +187,15 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon text-group-addon-small"><i class="flaticon flaticon-placeholder-3 golden"></i>  </div>
-              <input class="form-input text-input-small" type="text" placeholder="Delivery Address" ng-model="collection_selector">
+              <input class="form-input text-input-small" type="text" placeholder="Delivery Address" ng-model="delivery_address">
             </div>
           </div>
 
           <div class="form-group">
             <div class="input-group" style="width: 100%">
               <span class="input-group-addon checkbox-group-addon-small">
-                <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector"> </span>
-              <input class="form-input text-input-small" type="text" placeholder="Collection address same as delivery">
+                <input type="checkbox" class="add-checkbox " id="checkbox-1-1" ng-model="collection_selector" ng-change="col_change();"> </span>
+              <input class="form-input text-input-small" type="text" placeholder="{{collection_placeholder}}" ng-model="collection_address">
             </div>
           </div>
 
@@ -231,14 +231,38 @@
                   <tr>
                     <td class="text-right">Daily price</td>
                       <td class="col-md-2"></td>
-                    <td class="text-left">£550</td>
+                    <td class="text-left">£ {{car.daily_price}}</td>
                   </tr>
                   <tr>
                     <td class="text-right">Security deposit</td>
                       <td class="col-md-2"></td>
-                    <td class="text-left">£7550</td>
+                    <td class="text-left">£ {{car.security_deposit}}</td>
                   </tr>
-
+                  <tr>
+                    <td class="text-right">Rent x No. of days</td>
+                      <td class="col-md-2"></td>
+                    <td class="text-left">£ {{car.daily_price}} x {{car.days}} = £ {{car.total_rent}} </td>
+                  </tr>
+                  <tr ng-show="chauffeur_selected">
+                    <td class="text-right" >Chauffeur x No. of days</td>
+                      <td class="col-md-2"></td>
+                    <td class="text-left">£ 40 x {{car.days}} = £ {{car.total_chauffeur}}  </td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Delivery charges</td>
+                      <td class="col-md-2"></td>
+                    <td class="text-left">£ 200 </td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Vat</td>
+                      <td class="col-md-2"></td>
+                    <td class="text-left">£ 35  </td>
+                  </tr>
+                  <tr>
+                    <td class="text-right"><b>Total</b></td>
+                      <td class="col-md-2"></td>
+                    <td class="text-left"><b>£ {{car.total}} </b> </td>
+                  </tr>
                 </tbody>
               </table>
           </div>
